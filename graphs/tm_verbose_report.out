@@ -1,0 +1,988 @@
+Call graph:
+DADDR_SIZE:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+FALSE:
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    error() <int error (char *msg, int lineNo, int instNo) at /dev/fd/63:213>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+IADDR_SIZE:
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+LINESIZE:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+NO_REGS:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+NULL:
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+PC_REG:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+TRUE:
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+WORDSIZE:
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+abs():
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+atEOL() <int atEOL (void) at /dev/fd/63:208>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+ch <char ch at /dev/fd/63:111>:
+    getCh() <void getCh (void) at /dev/fd/63:138>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+dMem <int dMem[DADDR_SIZE] at /dev/fd/63:87>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+dloc <int dloc at /dev/fd/63:82>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+doCommand() <int doCommand (void) at /dev/fd/63:400>:
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+done <int done at /dev/fd/63:112>:
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+error() <int error (char *msg, int lineNo, int instNo) at /dev/fd/63:213>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+exit():
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+feof():
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+fflush():
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+fgets():
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+fopen():
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+getCh() <void getCh (void) at /dev/fd/63:138>:
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+getNum() <int getNum (void) at /dev/fd/63:158>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+getWord() <int getWord (void) at /dev/fd/63:183>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+iMem <INSTRUCTION iMem[IADDR_SIZE] at /dev/fd/63:86>:
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+icountflag <int icountflag at /dev/fd/63:84>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+iloc <int iloc at /dev/fd/63:81>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+inCol <int inCol at /dev/fd/63:108>:
+    getCh() <void getCh (void) at /dev/fd/63:138>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+in_Line <char in_Line[LINESIZE] at /dev/fd/63:106>:
+    getCh() <void getCh (void) at /dev/fd/63:138>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+isalnum():
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+isdigit():
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+lineLen <int lineLen at /dev/fd/63:107>:
+    getCh() <void getCh (void) at /dev/fd/63:138>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+        getNum() <int getNum (void) at /dev/fd/63:158>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+                doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        getWord() <int getWord (void) at /dev/fd/63:183>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+            readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        atEOL() <int atEOL (void) at /dev/fd/63:208>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+nonBlank() <int nonBlank (void) at /dev/fd/63:145>:
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    atEOL() <int atEOL (void) at /dev/fd/63:208>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+num <int num at /dev/fd/63:109>:
+    getNum() <int getNum (void) at /dev/fd/63:158>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opADD:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opClass() <int opClass (int c) at /dev/fd/63:115>:
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opCodeTab <char *opCodeTab[] at /dev/fd/63:90>:
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opDIV:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opHALT:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opIN:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJEQ:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJGE:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJGT:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJLE:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJLT:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opJNE:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opLD:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opLDA:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opLDC:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opMUL:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opOUT:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opRALim:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opRMLim:
+    opClass() <int opClass (int c) at /dev/fd/63:115>:
+        writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opRRLim:
+    opClass() <int opClass (int c) at /dev/fd/63:115>:
+        writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opST:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opSUB:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opclRA:
+    opClass() <int opClass (int c) at /dev/fd/63:115>:
+        writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opclRM:
+    opClass() <int opClass (int c) at /dev/fd/63:115>:
+        writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+opclRR:
+    opClass() <int opClass (int c) at /dev/fd/63:115>:
+        writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+            doCommand() <int doCommand (void) at /dev/fd/63:400>:
+                main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+pgm <FILE *pgm at /dev/fd/63:104>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+pgmName <char pgmName[20] at /dev/fd/63:103>:
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+printf():
+    writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    error() <int error (char *msg, int lineNo, int instNo) at /dev/fd/63:213>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+reg <int reg[NO_REGS] at /dev/fd/63:88>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+skipCh() <int skipCh (char c) at /dev/fd/63:198>:
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+srDMEM_ERR:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+srHALT:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+srIMEM_ERR:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+srOKAY:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+srZERODIVIDE:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+stdin:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+stdout:
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+stepResultTab <char *stepResultTab[] at /dev/fd/63:98>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+strcat():
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+strchr():
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+strcpy():
+    main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+strlen():
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    stepTM() <STEPRESULT stepTM (void) at /dev/fd/63:307>:
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+strncmp():
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+traceflag <int traceflag at /dev/fd/63:83>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+word <char word[WORDSIZE] at /dev/fd/63:110>:
+    getWord() <int getWord (void) at /dev/fd/63:183>:
+        readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+        doCommand() <int doCommand (void) at /dev/fd/63:400>:
+            main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    readInstructions() <int readInstructions (void) at /dev/fd/63:221>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+writeInstruction() <void writeInstruction (int loc) at /dev/fd/63:122>:
+    doCommand() <int doCommand (void) at /dev/fd/63:400>:
+        main() <int main (int argc, char *argv[]) at /dev/fd/63:561>
+
+Dependency graph:
+DADDR_SIZE readInstructions()
+DADDR_SIZE stepTM()
+DADDR_SIZE doCommand()
+FALSE nonBlank()
+FALSE getNum()
+FALSE getWord()
+FALSE skipCh()
+FALSE error()
+FALSE doCommand()
+IADDR_SIZE writeInstruction()
+IADDR_SIZE readInstructions()
+IADDR_SIZE stepTM()
+IADDR_SIZE doCommand()
+LINESIZE readInstructions()
+LINESIZE stepTM()
+LINESIZE doCommand()
+NO_REGS readInstructions()
+NO_REGS doCommand()
+NULL main()
+PC_REG stepTM()
+PC_REG doCommand()
+TRUE nonBlank()
+TRUE getNum()
+TRUE skipCh()
+TRUE readInstructions()
+TRUE doCommand()
+WORDSIZE getWord()
+abs() doCommand()
+atEOL() doCommand()
+ch getCh()
+ch nonBlank()
+ch getNum()
+ch getWord()
+ch skipCh()
+dMem readInstructions()
+dMem stepTM()
+dMem doCommand()
+dloc doCommand()
+doCommand() main()
+done main()
+error() readInstructions()
+exit() main()
+feof() readInstructions()
+fflush() stepTM()
+fflush() doCommand()
+fgets() readInstructions()
+fgets() stepTM()
+fgets() doCommand()
+fopen() main()
+getCh() getNum()
+getCh() getWord()
+getCh() skipCh()
+getNum() readInstructions()
+getNum() stepTM()
+getNum() doCommand()
+getWord() readInstructions()
+getWord() doCommand()
+iMem writeInstruction()
+iMem readInstructions()
+iMem stepTM()
+icountflag doCommand()
+iloc doCommand()
+inCol getCh()
+inCol nonBlank()
+inCol readInstructions()
+inCol stepTM()
+inCol doCommand()
+in_Line getCh()
+in_Line nonBlank()
+in_Line readInstructions()
+in_Line stepTM()
+in_Line doCommand()
+isalnum() getWord()
+isdigit() getNum()
+lineLen getCh()
+lineLen nonBlank()
+lineLen readInstructions()
+lineLen stepTM()
+lineLen doCommand()
+nonBlank() getNum()
+nonBlank() getWord()
+nonBlank() skipCh()
+nonBlank() atEOL()
+nonBlank() readInstructions()
+num getNum()
+num readInstructions()
+num stepTM()
+num doCommand()
+opADD stepTM()
+opClass() writeInstruction()
+opClass() readInstructions()
+opClass() stepTM()
+opCodeTab writeInstruction()
+opCodeTab readInstructions()
+opDIV stepTM()
+opHALT readInstructions()
+opHALT stepTM()
+opIN stepTM()
+opJEQ stepTM()
+opJGE stepTM()
+opJGT stepTM()
+opJLE stepTM()
+opJLT stepTM()
+opJNE stepTM()
+opLD stepTM()
+opLDA stepTM()
+opLDC stepTM()
+opMUL stepTM()
+opOUT stepTM()
+opRALim readInstructions()
+opRMLim opClass()
+opRRLim opClass()
+opST stepTM()
+opSUB stepTM()
+opclRA opClass()
+opclRA writeInstruction()
+opclRA readInstructions()
+opclRA stepTM()
+opclRM opClass()
+opclRM writeInstruction()
+opclRM readInstructions()
+opclRM stepTM()
+opclRR opClass()
+opclRR writeInstruction()
+opclRR readInstructions()
+opclRR stepTM()
+pgm readInstructions()
+pgm main()
+pgmName main()
+printf() writeInstruction()
+printf() error()
+printf() stepTM()
+printf() doCommand()
+printf() main()
+readInstructions() main()
+reg readInstructions()
+reg stepTM()
+reg doCommand()
+skipCh() readInstructions()
+srDMEM_ERR stepTM()
+srHALT stepTM()
+srIMEM_ERR stepTM()
+srOKAY stepTM()
+srOKAY doCommand()
+srZERODIVIDE stepTM()
+stdin stepTM()
+stdin doCommand()
+stdout stepTM()
+stdout doCommand()
+stepResultTab doCommand()
+stepTM() doCommand()
+strcat() main()
+strchr() main()
+strcpy() main()
+strlen() readInstructions()
+strlen() stepTM()
+strlen() doCommand()
+strncmp() readInstructions()
+traceflag doCommand()
+word getWord()
+word readInstructions()
+word doCommand()
+writeInstruction() doCommand()
+
+Topological sort:
+DADDR_SIZE
+FALSE
+IADDR_SIZE
+LINESIZE
+NO_REGS
+NULL
+PC_REG
+TRUE
+WORDSIZE
+abs()
+ch
+dMem
+dloc
+done
+exit()
+feof()
+fflush()
+fgets()
+fopen()
+iMem
+icountflag
+iloc
+inCol
+in_Line
+isalnum()
+isdigit()
+lineLen
+num
+opADD
+opCodeTab
+opDIV
+opHALT
+opIN
+opJEQ
+opJGE
+opJGT
+opJLE
+opJLT
+opJNE
+opLD
+opLDA
+opLDC
+opMUL
+opOUT
+opRALim
+opRMLim
+opRRLim
+opST
+opSUB
+opclRA
+opclRM
+opclRR
+pgm
+pgmName
+printf()
+reg
+srDMEM_ERR
+srHALT
+srIMEM_ERR
+srOKAY
+srZERODIVIDE
+stdin
+stdout
+stepResultTab
+strcat()
+strchr()
+strcpy()
+strlen()
+strncmp()
+traceflag
+word
+nonBlank()
+getCh()
+opClass()
+error()
+atEOL()
+skipCh()
+getWord()
+getNum()
+writeInstruction()
+stepTM()
+readInstructions()
+doCommand()
+main()
