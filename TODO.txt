@@ -1,7 +1,6 @@
-cppcheck
-tests
-re-order .h file functions
+re-order .h file functions after
 EXTRACT_ALL Doxyfile
 check if I didn't include all .h / .c in Doxyfile
 if reengineering: gcov, cunit
 -Weverything
+valgrind in test.sh
