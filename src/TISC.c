@@ -101,7 +101,7 @@ int lineLen ;
 int inCol  ;
 int num  ;
 char word[WORDSIZE] ;
-char ch  ;
+char curr_char; // TODO: refactor this global variable
 int done  ;
 
 /********************************************/
@@ -135,8 +135,8 @@ void writeInstruction ( int loc )
 void getCh (void)
 { 
     if (++inCol < lineLen)
-        ch = in_Line[inCol] ;
-    else ch = ' ' ;
+        curr_char = in_Line[inCol] ;
+    else curr_char = ' ' ;
 } /* getCh */
 
 /********************************************/
@@ -147,11 +147,11 @@ bool nonBlank (void)
         inCol++ ;
     if (inCol < lineLen)
     { 
-        ch = in_Line[inCol] ;
+        curr_char = in_Line[inCol] ;
         return true; }
     else
     { 
-        ch = ' ' ;
+        curr_char = ' ' ;
         return false; }
 } /* nonBlank */
 
@@ -165,22 +165,22 @@ int getNum (void)
     do
     { 
         sign = 1;
-        while ( nonBlank() && ((ch == '+') || (ch == '-')) )
+        while ( nonBlank() && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
-            if (ch == '-')  sign = - sign ;
+            if (curr_char == '-')  sign = - sign ;
             getCh();
         }
         term = 0 ;
         nonBlank();
-        while (isdigit(ch))
+        while (isdigit(curr_char))
         { 
             temp = true;
-            term = term * 10 + ( ch - '0' ) ;
+            term = term * 10 + ( curr_char - '0' ) ;
             getCh();
         }
         num = num + (term * sign) ;
-    } while ( (nonBlank()) && ((ch == '+') || (ch == '-')) ) ;
+    } while ( (nonBlank()) && ((curr_char == '+') || (curr_char == '-')) ) ;
     return temp;
 } /* getNum */
 
@@ -191,9 +191,9 @@ int getWord (void)
     int length = 0;
     if (nonBlank ())
     { 
-        while (isalnum(ch))
+        while (isalnum(curr_char))
         { 
-            if (length < WORDSIZE-1) word [length++] =  ch ;
+            if (length < WORDSIZE-1) word [length++] =  curr_char;
             getCh() ;
         }
         word[length] = '\0';
@@ -207,7 +207,7 @@ int skipCh ( char c  )
 {
 
     bool temp = false;
-    if ( nonBlank() && (ch == c) )
+    if ( nonBlank() && (curr_char == c) )
     { 
         getCh();
         temp = true;

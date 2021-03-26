@@ -17,7 +17,7 @@
 /** Number of registers */
 #define NO_REGS     8
 
-/** TODO: */
+/** Program counter register */
 #define PC_REG      7
 
 /** Size of an input line */
