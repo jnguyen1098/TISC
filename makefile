@@ -31,6 +31,8 @@ lint:
 	cppcheck --enable=all -Iinclude --inconclusive -v $(SRC)
 	splint -Iinclude $(SRC)/*.c
 	clang-tidy -checks=* $(SRC)/*.c -- -Iinclude
+	diff -u <(clang-format $(INC)/*.h) <(cat $(INC)/*.h)
+	diff -u <(clang-format $(SRC)/*.c) <(cat $(SRC)/*.c)
 
 documentation:
 	doxygen Doxyfile
