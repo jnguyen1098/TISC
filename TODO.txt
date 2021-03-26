@@ -4,3 +4,5 @@ check if I didn't include all .h / .c in Doxyfile
 if reengineering: gcov, cunit
 -Weverything
 valgrind in test.sh
+docs/ folder?
+examples/ folder?
