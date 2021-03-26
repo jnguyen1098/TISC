@@ -71,8 +71,11 @@ typedef struct {
 } INSTRUCTION;
 
 /******** vars ********/
-int iloc = 0 ;
-int dloc = 0 ;
+int iloc = 0;
+
+/** Temporary iterator for data_memory when using `d` */
+int data_itr = 0;
+
 int traceflag = false;
 int icountflag = false;
 
@@ -525,7 +528,7 @@ int doCommand (void)
                      printcnt = 1 ;
                      if ( getNum  ())
                      { 
-                         dloc = num ;
+                         data_itr = num ;
                          if ( getNum ()) printcnt = num ;
                      }
                      //if ( ! atEOL ())
@@ -533,11 +536,11 @@ int doCommand (void)
                          printf("Data locations?\n");
                      else
                      { 
-                         while ((dloc >= 0) && (dloc < DADDR_SIZE)
+                         while ((data_itr >= 0) && (data_itr < DADDR_SIZE)
                                  && (printcnt > 0))
                          { 
-                             printf("%5d: %5d\n",dloc, data_memory[dloc]);
-                             dloc++;
+                             printf("%5d: %5d\n",data_itr, data_memory[data_itr]);
+                             data_itr++;
                              printcnt--;
                          }
                      }
@@ -546,7 +549,7 @@ int doCommand (void)
         case 'c' :
                      /***********************************/
                      iloc = 0;
-                     dloc = 0;
+                     data_itr = 0;
                      stepcnt = 0;
                      for (regNo = 0;  regNo < NO_REGS ; regNo++)
                          reg[regNo] = 0 ;
