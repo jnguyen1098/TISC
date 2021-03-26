@@ -1,21 +1,28 @@
 CC = clang
 # CFLAGS = -Weverything -Wall -Wpedantic -std=c99 -Wextra -ggdb3 
-CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3
+CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3 -Iinclude
 VFLAGS = --show-leak-kinds=all --track-origins=yes --leak-check=full
 
-EXE = TISC
-OBJ = TISC.o
-INC = TISC.h
+BIN = bin
+SRC = src
+INC = include
+
+EXE = $(BIN)/TISC
+OBJS = $(BIN)/TISC.o
+SRCS = $(SRC)/TISC.c
 
 all: $(EXE)
 
-$(EXE): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $(EXE)
+$(EXE): $(OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
 
-run: all
-	./$(EXE) gcd.tm
+$(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
+	$(CC) $(CFLAGS) $< -c -o $@
+
+test: all
+	./test.sh
 
 clean:
-	rm -rf $(EXE) $(OBJ)
+	rm -rf $(BIN)/*
 
-.PHONY: all run clean
+.PHONY: all test clean
