@@ -11,16 +11,10 @@
 #include "TISC.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-#ifndef FALSE
-#define FALSE 0
-#endif
 
 /******* const *******/
 #define   LINESIZE  121
@@ -83,8 +77,8 @@ typedef struct {
 /******** vars ********/
 int iloc = 0 ;
 int dloc = 0 ;
-int traceflag = FALSE;
-int icountflag = FALSE;
+int traceflag = false;
+int icountflag = false;
 
 INSTRUCTION iMem [IADDR_SIZE];
 int dMem [DADDR_SIZE];
@@ -145,35 +139,35 @@ void getCh (void)
 } /* getCh */
 
 /********************************************/
-int nonBlank (void)
+bool nonBlank (void)
 { while ((inCol < lineLen)
          && (in_Line[inCol] == ' ') )
     inCol++ ;
   if (inCol < lineLen)
   { ch = in_Line[inCol] ;
-    return TRUE ; }
+    return true; }
   else
   { ch = ' ' ;
-    return FALSE ; }
+    return false; }
 } /* nonBlank */
 
 /********************************************/
 int getNum (void)
 { int sign;
   int term;
-  int temp = FALSE;
+  bool temp = false;
   num = 0 ;
   do
   { sign = 1;
     while ( nonBlank() && ((ch == '+') || (ch == '-')) )
-    { temp = FALSE ;
+    { temp = false;
       if (ch == '-')  sign = - sign ;
       getCh();
     }
     term = 0 ;
     nonBlank();
     while (isdigit(ch))
-    { temp = TRUE ;
+    { temp = true;
       term = term * 10 + ( ch - '0' ) ;
       getCh();
     }
@@ -184,7 +178,7 @@ int getNum (void)
 
 /********************************************/
 int getWord (void)
-{ int temp = FALSE;
+{ int temp = false;
   int length = 0;
   if (nonBlank ())
   { while (isalnum(ch))
@@ -199,10 +193,12 @@ int getWord (void)
 
 /********************************************/
 int skipCh ( char c  )
-{ int temp = FALSE;
+{
+
+  bool temp = false;
   if ( nonBlank() && (ch == c) )
   { getCh();
-    temp = TRUE;
+    temp = true;
   }
   return temp;
 } /* skipCh */
@@ -217,7 +213,7 @@ int error( char * msg, int lineNo, int instNo)
 { printf("Line %d",lineNo);
   if (instNo >= 0) printf(" (Instruction %d)",instNo);
   printf("   %s\n",msg);
-  return FALSE;
+  return false;
 } /* error */
 
 /********************************************/
@@ -302,7 +298,7 @@ int readInstructions (void)
       iMem[loc].iarg3 = arg3;
     }
   }
-  return TRUE;
+  return true;
 } /* readInstructions */
 
 
@@ -526,7 +522,7 @@ int doCommand (void)
             dMem[loc] = 0 ;
       break;
 
-    case 'q' : return FALSE;  /* break; */
+    case 'q' : return false;  /* break; */
 
     default : printf("Command %c unknown.\n", cmd); break;
   }  /* case */
@@ -553,7 +549,7 @@ int doCommand (void)
     }
     printf( "%s\n",stepResultTab[stepResult] );
   }
-  return TRUE;
+  return true;
 } /* doCommand */
 
 
