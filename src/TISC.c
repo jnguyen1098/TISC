@@ -77,7 +77,7 @@ int traceflag = false;
 int icountflag = false;
 
 INSTRUCTION iMem [IADDR_SIZE];
-int dMem [DADDR_SIZE];
+int data_memory[DADDR_SIZE];
 int reg [NO_REGS];
 
 char * opCodeTab[]
@@ -238,9 +238,9 @@ int readInstructions (void)
     int loc, regNo, lineNo;
     for (regNo = 0 ; regNo < NO_REGS ; regNo++)
         reg[regNo] = 0 ;
-    dMem[0] = DADDR_SIZE - 1 ;
+    data_memory[0] = DADDR_SIZE - 1 ;
     for (loc = 1 ; loc < DADDR_SIZE ; loc++)
-        dMem[loc] = 0 ;
+        data_memory[loc] = 0 ;
     for (loc = 0 ; loc < IADDR_SIZE ; loc++)
     { 
         iMem[loc].iop = opHALT ;
@@ -400,8 +400,8 @@ STEPRESULT stepTM (void)
                       break;
 
                       /*************** RM instructions ********************/
-        case opLD :    reg[r] = dMem[m] ;  break;
-        case opST :    dMem[m] = reg[r] ;  break;
+        case opLD :    reg[r] = data_memory[m] ;  break;
+        case opST :    data_memory[m] = reg[r] ;  break;
 
                        /*************** RA instructions ********************/
         case opLDA :    reg[r] = m ; break;
@@ -459,7 +459,7 @@ int doCommand (void)
             printf("   i(Mem <b <n>>  "\
                     "Print n iMem locations starting at b\n");
             printf("   d(Mem <b <n>>  "\
-                    "Print n dMem locations starting at b\n");
+                    "Print n data memory locations starting at b\n");
             printf("   t(race         "\
                     "Toggle instruction trace\n");
             printf("   p(rint         "\
@@ -536,7 +536,7 @@ int doCommand (void)
                          while ((dloc >= 0) && (dloc < DADDR_SIZE)
                                  && (printcnt > 0))
                          { 
-                             printf("%5d: %5d\n",dloc,dMem[dloc]);
+                             printf("%5d: %5d\n",dloc, data_memory[dloc]);
                              dloc++;
                              printcnt--;
                          }
@@ -550,9 +550,9 @@ int doCommand (void)
                      stepcnt = 0;
                      for (regNo = 0;  regNo < NO_REGS ; regNo++)
                          reg[regNo] = 0 ;
-                     dMem[0] = DADDR_SIZE - 1 ;
+                     data_memory[0] = DADDR_SIZE - 1 ;
                      for (loc = 1 ; loc < DADDR_SIZE ; loc++)
-                         dMem[loc] = 0 ;
+                         data_memory[loc] = 0 ;
                      break;
 
         case 'q' : return false;  /* break; */

@@ -11,7 +11,7 @@
 /** Instruction address array size */
 #define IADDR_SIZE  1024
 
-/** TODO: data address array size? dMem */
+/** Data memory array size */
 #define DADDR_SIZE  1024
 
 /** Number of registers */

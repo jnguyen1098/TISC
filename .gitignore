@@ -1,7 +1,17 @@
+# Object and binary files
 *.o
-*.swp
-tisc
 TISC
+
+# imagine using vim...
+*.swp
+
+# Temporary files
 *tmp*
+
+# I don't even know
 *.gch
 *.plist
+
+# Documentation (Doxygen) files
+html/
+latex/
