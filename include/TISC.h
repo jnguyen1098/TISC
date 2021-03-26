@@ -8,6 +8,18 @@
 #ifndef TISC_H
 #define TISC_H
 
+/** Instruction address array size */
+#define IADDR_SIZE  1024
+
+/** TODO: data address array size? dMem */
+#define DADDR_SIZE  1024
+
+/** Number of registers */
+#define NO_REGS     8
+
+/** TODO: */
+#define PC_REG      7
+
 // pre post return param
 
 /**

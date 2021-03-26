@@ -27,6 +27,11 @@ $(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
 test: all
 	./test.sh
 
+lint:
+	cppcheck --enable=all -Iinclude --inconclusive -v $(SRC)
+	splint -Iinclude $(SRC)/*.c
+	clang-tidy -checks=* $(SRC)/*.c -- -Iinclude
+
 documentation:
 	doxygen Doxyfile
 

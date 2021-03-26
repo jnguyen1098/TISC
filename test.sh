@@ -18,4 +18,4 @@ for test in $TESTS; do
     rm -rf "$test_output.tmp"
 done
 
-echo "Done tests"
+echo -e "\e[32mDone!\e[0m"

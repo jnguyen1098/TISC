@@ -8,6 +8,8 @@
 /* Kenneth C. Louden                                */
 /****************************************************/
 
+#include "TISC.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,11 +23,6 @@
 #endif
 
 /******* const *******/
-#define   IADDR_SIZE  1024 /* increase for large programs */
-#define   DADDR_SIZE  1024 /* increase for large programs */
-#define   NO_REGS 8
-#define   PC_REG  7
-
 #define   LINESIZE  121
 #define   WORDSIZE  20
 
