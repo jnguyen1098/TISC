@@ -252,9 +252,8 @@ int readInstructions (void)
         iMem[loc].iarg3 = 0 ;
     }
     lineNo = 0 ;
-    while (! feof(pgm))
+    while (fgets(in_Line, LINESIZE-2, pgm))
     { 
-        fgets( in_Line, LINESIZE-2, pgm  ) ;
         inCol = 0 ; 
         lineNo++;
         lineLen = strlen(in_Line)-1 ;
