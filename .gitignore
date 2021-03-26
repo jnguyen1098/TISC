@@ -3,3 +3,5 @@
 tisc
 TISC
 *tmp*
+*.gch
+*.plist
