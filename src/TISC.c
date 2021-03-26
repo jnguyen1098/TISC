@@ -16,10 +16,6 @@
 #include <string.h>
 #include <ctype.h>
 
-/******* const *******/
-#define   LINESIZE  121
-#define   WORDSIZE  20
-
 /******* type  *******/
 
 typedef enum {
