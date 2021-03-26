@@ -1,5 +1,8 @@
+/**
+ * @brief Success
+ */
 /****************************************************/
-/* File: tm.c                                       */
+/* @file: TISC.c                                       */
 /* The TM ("Tiny Machine") computer                 */
 /* Compiler Construction: Principles and Practice   */
 /* Kenneth C. Louden                                */
@@ -62,6 +65,9 @@ typedef enum {
    opRALim    /* Limit of RA opcodes */
    } OPCODE;
 
+/**
+ * LMAO
+ */
 typedef enum {
    srOKAY,
    srHALT,

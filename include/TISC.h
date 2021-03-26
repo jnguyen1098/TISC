@@ -1,5 +1,5 @@
 /**
- * @file tisc.h
+ * @file TISC.h
  * @author Jason Nguyen
  * @date March 2021
  * @brief TISC function signatures.

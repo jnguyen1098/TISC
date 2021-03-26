@@ -1,3 +1,5 @@
 cppcheck
 tests
 re-order .h file functions
+EXTRACT_ALL Doxyfile
+check if I didn't include all .h / .c in Doxyfile

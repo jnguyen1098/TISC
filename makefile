@@ -27,7 +27,10 @@ $(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
 test: all
 	./test.sh
 
-clean:
-	rm -rf $(BIN)/*
+documentation:
+	doxygen Doxyfile
 
-.PHONY: all test clean
+clean:
+	rm -rf $(BIN)/* html latex
+
+.PHONY: all test documentation clean
