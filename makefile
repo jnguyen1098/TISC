@@ -1,11 +1,9 @@
 # TISC
 
-CC = gcc
-CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3 -I$(INC)
+CC = clang
+CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3 -I$(INC) \
+# -Weverything
 VFLAGS = --show-leak-kinds=all --track-origins=yes --leak-check=full
-
-# CC = clang
-# CFLAGS = -Weverything -Wall -Wpedantic -std=c99 -Wextra -ggdb3 
 
 PROJ = TISC
 
@@ -27,17 +25,18 @@ $(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
 test: all
 	./test.sh
 
-lint:
+lint: all
 	cppcheck --enable=all -Iinclude --inconclusive -v $(SRC)
 	splint -Iinclude $(SRC)/*.c
 	clang-tidy -checks=* $(SRC)/*.c -- -Iinclude
 	diff -u <(clang-format $(INC)/*.h) <(cat $(INC)/*.h)
 	diff -u <(clang-format $(SRC)/*.c) <(cat $(SRC)/*.c)
+	clang --analyze src/*.c -Iinclude
 
 documentation:
 	doxygen Doxyfile
 
 clean:
-	rm -rf $(BIN)/* html latex
+	rm -rf $(BIN)/* html latex *.plist $(INC)/*.gch
 
 .PHONY: all test documentation clean
