@@ -1,0 +1,3 @@
+cppcheck
+tests
+re-order .h file functions
