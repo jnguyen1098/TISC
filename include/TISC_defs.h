@@ -70,13 +70,18 @@ enum op_code {
 
 };
 
-
+/**
+ * Enum that represents an opcode's given class.
+ */
 const enum op_class {
     opclRR,     /**< Register-Register operations (r, s, t)     */
     opclRM,     /**< Register-Memory operations (r) v. (d, s)   */
     opclRA,     /**< Register-Address operations (r). (d, s)    */
 }
 
+/**
+ * Lookup table for quick conversion between op_code and op_class
+ */
 get_op_class[] = {
     [opHALT]  = opclRR,
     [opIN]    = opclRR,
