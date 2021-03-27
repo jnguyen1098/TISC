@@ -25,13 +25,13 @@
 /** Size of an instruction word */
 #define WORDSIZE    20
 
-typedef enum {
+enum op_class {
     opclRR,     /* reg operands r,s,t */
     opclRM,     /* reg r, mem d+s */
     opclRA      /* reg r, int d+s */
-} OPCLASS;
+};
 
-typedef enum {
+enum {
 
         // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
     opHALT,     /**< Halt                                       */
@@ -68,7 +68,7 @@ typedef enum {
 
     opRALim,    /**< RA opcode limit                            */
 
-} OPCODE;
+} op_code;
 
 /**
  * Step result
