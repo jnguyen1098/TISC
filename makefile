@@ -58,7 +58,7 @@ documentation:
 	doxygen Doxyfile
 
 clean:
-	rm -rf $(BIN)/* html latex *.plist $(INC)/*.gch
+	rm -rf $(BIN)/* test/tm html/ latex/ *.plist $(INC)/*.gch test/out/*
 
 .PHONY: all test lint cppcheck splint clang-analyze\
         clang-tidy clang-format documentation clean
