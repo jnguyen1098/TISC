@@ -15,13 +15,13 @@
 #include <string.h>
 #include <ctype.h>
 
-/** Temporary iterator for iMem. TODO: counter or actual instruction? */
+/** Temporary iterator for instruction memory. TODO: counter or actual instruction? */
 int inst_itr = 0;
 
 /** Temporary iterator for data_memory when using `d` */
 int data_itr = 0;
 
-struct instruction iMem[IADDR_SIZE];
+struct instruction instruction_memory[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
 int reg[NO_REGS];
 
@@ -41,14 +41,14 @@ void write_instruction(int loc)
 { 
     printf("%5d: ", loc);
     if (loc >= 0 && loc < IADDR_SIZE) { 
-        printf("%6s%3d,", opCodeTab[iMem[loc].iop], iMem[loc].iarg1);
-        switch (get_op_class[iMem[loc].iop]) { 
+        printf("%6s%3d,", opCodeTab[instruction_memory[loc].iop], instruction_memory[loc].iarg1);
+        switch (get_op_class[instruction_memory[loc].iop]) { 
             case opclRR:
-                printf("%1d,%1d", iMem[loc].iarg2, iMem[loc].iarg3);
+                printf("%1d,%1d", instruction_memory[loc].iarg2, instruction_memory[loc].iarg3);
                 break;
             case opclRM:
             case opclRA:
-                printf("%3d(%1d)", iMem[loc].iarg2, iMem[loc].iarg3);
+                printf("%3d(%1d)", instruction_memory[loc].iarg2, instruction_memory[loc].iarg3);
                 break;
         }
         printf ("\n");
@@ -144,10 +144,10 @@ int readInstructions (FILE *pgm)
         data_memory[loc] = 0 ;
     for (loc = 0 ; loc < IADDR_SIZE ; loc++)
     { 
-        iMem[loc].iop = opHALT ;
-        iMem[loc].iarg1 = 0 ;
-        iMem[loc].iarg2 = 0 ;
-        iMem[loc].iarg3 = 0 ;
+        instruction_memory[loc].iop = opHALT ;
+        instruction_memory[loc].iarg1 = 0 ;
+        instruction_memory[loc].iarg2 = 0 ;
+        instruction_memory[loc].iarg3 = 0 ;
     }
     lineNo = 0 ;
     while (fgets(line_buf, BUFSIZ, pgm))
@@ -211,10 +211,10 @@ int readInstructions (FILE *pgm)
                     arg3 = num;
                     break;
             }
-            iMem[loc].iop = op;
-            iMem[loc].iarg1 = arg1;
-            iMem[loc].iarg2 = arg2;
-            iMem[loc].iarg3 = arg3;
+            instruction_memory[loc].iop = op;
+            instruction_memory[loc].iarg1 = arg1;
+            instruction_memory[loc].iarg2 = arg2;
+            instruction_memory[loc].iarg3 = arg3;
         }
     }
     return true;
@@ -233,7 +233,7 @@ enum step_result step(void)
     }
 
     reg[PC_REG]++;
-    struct instruction curr_instruction = iMem[program_counter];
+    struct instruction curr_instruction = instruction_memory[program_counter];
 
     switch (get_op_class[curr_instruction.iop]) { 
 
@@ -358,7 +358,7 @@ int doCommand (void)
             printf("   r(egs          "\
                     "Print the contents of the registers\n");
             printf("   i(Mem <b <n>>  "\
-                    "Print n iMem locations starting at b\n");
+                    "Print n iMem locations starting at b\n"); // TODO: change iMem
             printf("   d(Mem <b <n>>  "\
                     "Print n data memory locations starting at b\n");
             printf("   t(race         "\
