@@ -44,4 +44,14 @@ char get_next_non_blank_char(void);
  */
 char get_next_char(void);
 
+/**
+ * Returns the instruction class of a particular op code
+ *
+ * @pre         param represents a legal op code
+ * @param op    the op code to be examined
+ * @return      an op_class enum of the op_code class
+ * @see         op_class
+ */
+enum op_class get_op_class(enum op_code op);
+
 #endif

@@ -37,22 +37,21 @@ char word[WORD_SIZE];
 char curr_char; // TODO: refactor this global variable
 int done  ;
 
-/********************************************/
-int opClass( int c )
-{ 
-    if      ( c <= opRRLim) return ( opclRR );
-    else if ( c <= opRMLim) return ( opclRM );
-    else                    return ( opclRA );
-} /* opClass */
+enum op_class get_op_class(enum op_code op)
+{
+    if (op <= opRRLim) return opclRR;
+    if (op <= opRMLim) return opclRM;
+    return opclRA;
+}
 
-/********************************************/
+
 void writeInstruction ( int loc )
 { 
     printf( "%5d: ", loc) ;
     if ( (loc >= 0) && (loc < IADDR_SIZE) )
     { 
         printf("%6s%3d,", opCodeTab[iMem[loc].iop], iMem[loc].iarg1);
-        switch ( opClass(iMem[loc].iop) )
+        switch (get_op_class(iMem[loc].iop))
         { 
             case opclRR: printf("%1d,%1d", iMem[loc].iarg2, iMem[loc].iarg3);
                          break;
@@ -194,7 +193,7 @@ int readInstructions (FILE *pgm)
                 op++ ;
             if (strncmp(opCodeTab[op], word, 4) != 0)
                 return error("Illegal opcode", lineNo,loc);
-            switch ( opClass(op) )
+            switch (get_op_class(op))
             { 
                 case opclRR :
                     /***********************************/
@@ -254,7 +253,7 @@ enum step_result stepTM (void)
         return srIMEM_ERR ;
     reg[PC_REG] = pc + 1 ;
     currentinstruction = iMem[ pc ] ;
-    switch (opClass(currentinstruction.iop) )
+    switch (get_op_class(currentinstruction.iop))
     { 
         case opclRR :
             /***********************************/
