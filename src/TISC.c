@@ -240,11 +240,11 @@ int atEOL(void)
 } /* atEOL */
 
 /********************************************/
-int error( char * msg, int lineNo, int instNo)
+int error(char *msg, int lineNo, int instNo)
 { 
-    printf("Line %d",lineNo);
-    if (instNo >= 0) printf(" (Instruction %d)",instNo);
-    printf("   %s\n",msg);
+    fprintf(stderr, "Line %d", lineNo);
+    if (instNo >= 0) fprintf(stderr, " (Instruction %d)", instNo);
+    fprintf(stderr, "   %s\n", msg);
     return false;
 } /* error */
 
