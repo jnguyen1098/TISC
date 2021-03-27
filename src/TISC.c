@@ -105,12 +105,16 @@ const char *opCodeTab[] = {
     "LD", "ST", "<unknown RM>",
 
     /* RA opcodes */
-    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "<unknown RA>",
+    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "<unknown RA>", NULL,
 };
 
-char * stepResultTab[]
-= {"OK","Halted","Instruction Memory Fault",
-    "Data Memory Fault","Division by 0"
+const char *stepResultTab[] = {
+    "OK",
+    "Halted",
+    "Instruction Memory Fault",
+    "Data Memory Fault",
+    "Division by 0",
+    NULL,
 };
 
 /** Current line buffer. */
