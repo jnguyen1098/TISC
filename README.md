@@ -4,6 +4,10 @@ The "Tiny Machine" computer was created by Kenneth C. Louden from "Compiler Cons
 
 ![dependency graph of the original tm.c](https://i.imgur.com/L5ShNJy.png)
 
+## Tiny
+
+Louden's Tiny Machine operates on the Harvard Architecture (that is, it has a separate instruction memory and data memory store, as opposed to the common von Neumann architecture that combines these two).
+
 ## Testing
 
 There is a testing suite that can be run by typing `make test`. It runs a shell script
