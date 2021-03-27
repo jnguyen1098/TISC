@@ -53,4 +53,15 @@ char get_next_char(void);
  */
 bool error(char *msg, int line_no, int inst_no);
 
+/**
+ * Skips input until first char after, setting current char to that
+ *
+ * @param   c The character to be skipped over in the input buffer
+ * @return  whether the skip was successful. If the input buffer
+ *          reaches EOF or there is no occurrence of char c in the
+ *          input buffer, it returns false instead.
+ * @post    input stream may be advanced forward
+ */
+bool get_next_char_after(char c);
+
 #endif

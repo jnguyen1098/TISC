@@ -98,7 +98,7 @@ int getNum (void)
 }
 
 /********************************************/
-int getWord (void)
+int getWord(void)
 { 
     int temp = false;
     int length = 0;
@@ -115,17 +115,15 @@ int getWord (void)
     return temp;
 } /* getWord */
 
-int skipCh ( char c  )
+bool get_next_char_after(char c)
 {
-
-    bool temp = false;
     if ((curr_char = get_next_non_blank_char()) && (curr_char == c) )
     { 
         curr_char = get_next_char();
-        temp = true;
+        return true;
     }
-    return temp;
-} /* skipCh */
+    return false;
+}
 
 bool error(char *msg, int line_no, int inst_no)
 { 
@@ -167,7 +165,7 @@ int readInstructions (FILE *pgm)
             loc = num;
             if (loc > IADDR_SIZE)
                 return error("Location too large",lineNo,loc);
-            if (! skipCh(':'))
+            if (!get_next_char_after(':'))
                 return error("Missing colon", lineNo,loc);
             if (! getWord ())
                 return error("Missing opcode", lineNo,loc);
@@ -184,12 +182,12 @@ int readInstructions (FILE *pgm)
                     if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad first register", lineNo,loc);
                     arg1 = num;
-                    if ( ! skipCh(','))
+                    if ( !get_next_char_after(','))
                         return error("Missing comma", lineNo, loc);
                     if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad second register", lineNo, loc);
                     arg2 = num;
-                    if ( ! skipCh(',')) 
+                    if ( !get_next_char_after(',')) 
                         return error("Missing comma", lineNo,loc);
                     if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad third register", lineNo,loc);
@@ -202,12 +200,12 @@ int readInstructions (FILE *pgm)
                     if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad first register", lineNo,loc);
                     arg1 = num;
-                    if ( ! skipCh(','))
+                    if ( !get_next_char_after(','))
                         return error("Missing comma", lineNo,loc);
                     if (! getNum ())
                         return error("Bad displacement", lineNo,loc);
                     arg2 = num;
-                    if ( ! skipCh('(') && ! skipCh(',') )
+                    if ( !get_next_char_after('(') && !get_next_char_after(',') )
                         return error("Missing LParen", lineNo,loc);
                     if ( (! getNum ()) || (num < 0) || (num >= NO_REGS))
                         return error("Bad second register", lineNo,loc);
