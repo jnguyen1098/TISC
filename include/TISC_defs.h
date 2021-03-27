@@ -31,12 +31,6 @@
 /** Size of an instruction word */
 #define WORD_SIZE   20
 
-enum op_class {
-    opclRR,     /* reg operands r,s,t */
-    opclRM,     /* reg r, mem d+s */
-    opclRA      /* reg r, int d+s */
-};
-
 enum op_code {
 
         // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
@@ -74,6 +68,38 @@ enum op_code {
 
     opRALim,    /**< RA opcode limit                            */
 
+};
+
+
+const enum op_class {
+    opclRR,     /**< Register-Register operations (r, s, t)     */
+    opclRM,     /**< Register-Memory operations (r) v. (d, s)   */
+    opclRA,     /**< Register-Address operations (r). (d, s)    */
+}
+
+get_op_class[] = {
+    [opHALT]  = opclRR,
+    [opIN]    = opclRR,
+    [opOUT]   = opclRR,
+    [opADD]   = opclRR,
+    [opSUB]   = opclRR,
+    [opMUL]   = opclRR,
+    [opDIV]   = opclRR,
+    [opRRLim] = opclRR,
+
+    [opLD]    = opclRM,
+    [opST]    = opclRM,
+    [opRMLim] = opclRM,
+
+    [opLDA]   = opclRA,
+    [opLDC]   = opclRA,
+    [opJLT]   = opclRA,
+    [opJLE]   = opclRA,
+    [opJGT]   = opclRA,
+    [opJGE]   = opclRA,
+    [opJEQ]   = opclRA,
+    [opJNE]   = opclRA,
+    [opRALim] = opclRA,
 };
 
 /**
