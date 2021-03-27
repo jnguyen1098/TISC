@@ -16,7 +16,7 @@ TESTS = tests
 _OBJS = $(PROJ)
 
 EXE = $(BIN)/$(PROJ)
-DEPS = $(INC)/$(PROJ).h
+DEPS = $(INC)/$(PROJ).h $(INC)/$(PROJ)_defs.h
 OBJS = $(addprefix $(BIN)/,$(addsuffix .o,$(_OBJS)))
 
 all: $(EXE)
