@@ -114,7 +114,7 @@ enum step_result {
     srOKAY,                             /**< OK, no errors  */
     srHALT,                             /**< Halt operations */
     STEP_ILLEGAL_PROGRAM_COUNTER_INDEX, /**< Illegal program counter index */
-    srDMEM_ERR,                         /**< Data memory error */
+    STEP_ILLEGAL_DATA_MEMORY_INDEX,     /**< Illegal data memory index */
     srZERODIVIDE                        /**< Division by zero */
 };
 

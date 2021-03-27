@@ -235,8 +235,7 @@ enum step_result stepTM(void)
     reg[PC_REG]++;
     struct instruction curr_instruction = iMem[program_counter];
 
-    switch (get_op_class[curr_instruction.iop])
-    { 
+    switch (get_op_class[curr_instruction.iop]) { 
         case opclRR :
             /***********************************/
             r = curr_instruction.iarg1 ;
@@ -249,8 +248,9 @@ enum step_result stepTM(void)
             r = curr_instruction.iarg1 ;
             s = curr_instruction.iarg3 ;
             m = curr_instruction.iarg2 + reg[s] ;
-            if ( (m < 0) || (m > DADDR_SIZE))
-                return srDMEM_ERR ;
+            if (m < 0 || m > DADDR_SIZE) {
+                return STEP_ILLEGAL_DATA_MEMORY_INDEX;
+            }
             break;
 
         case opclRA :
