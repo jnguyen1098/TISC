@@ -6,14 +6,15 @@ OUT_DIR="test/out"
 
 BIN=bin/TISC
 
-TESTS="gcd fac sort"
-
 DIFF_FAILED=false
 VALGRIND_FAILED=false
 
+trap 'rm -f test_output.tmp; exit' 0 2 3 15
+
 make all
 
-for test in $TESTS; do
+for fname in "$TEST_DIR"/*; do
+    test=$(basename "$fname" .tm)
     echo "Testing $test.tm"
     if [ "$1" == "-v" ]; then
         valgrind \
