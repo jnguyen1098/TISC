@@ -622,15 +622,15 @@ int main( int argc, char * argv[] )
     strcpy(pgmName,argv[1]) ;
     if (strchr (pgmName, '.') == NULL)
         strcat(pgmName,".tm");
-    FILE *pgm = fopen(pgmName, "r");
-    if (pgm == NULL)
+    FILE *program_text = fopen(pgmName, "r");
+    if (program_text == NULL)
     {
         printf("file '%s' not found\n",pgmName);
         exit(1);
     }
 
     /* read the program */
-    if (!readInstructions(pgm)) {
+    if (!readInstructions(program_text)) {
         exit(1);
     }
 
@@ -643,7 +643,7 @@ int main( int argc, char * argv[] )
     while (! done );
     printf("Simulation done.\n");
 
-    fclose(pgm);
+    fclose(program_text);
     return 0;
 }
 
