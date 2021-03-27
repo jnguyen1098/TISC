@@ -72,14 +72,17 @@ typedef enum {
     srIMEM_ERR,     /**< Instruction memory error */
     srDMEM_ERR,     /**< Data memory error */
     srZERODIVIDE    /**< Division by zero */
-} STEPRESULT;
+} step_result_t;
 
+/**
+ * Instruction struct
+ */
 typedef struct {
-    int iop;
-    int iarg1;
-    int iarg2;
-    int iarg3;
-} INSTRUCTION;
+    int iop;        /**< TODO: is this input/output processor? */
+    int iarg1;      /**< TODO: input argument 1? */
+    int iarg2;      /**< TODO: input argument 2? */
+    int iarg3;      /**< TODO: input argument 3? */
+} instruction_t;
 
 /** Temporary iterator for iMem. TODO: counter or actual instruction? */
 int inst_itr = 0;
@@ -90,7 +93,7 @@ int data_itr = 0;
 int traceflag = false;
 int icountflag = false;
 
-INSTRUCTION iMem[IADDR_SIZE];
+instruction_t iMem[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
 int reg[NO_REGS];
 
@@ -339,9 +342,9 @@ int readInstructions (FILE *pgm)
 
 
 /********************************************/
-STEPRESULT stepTM (void)
+step_result_t stepTM (void)
 { 
-    INSTRUCTION currentinstruction  ;
+    instruction_t currentinstruction;
     int pc  ;
     int r,s,t,m  ;
     int ok ;
