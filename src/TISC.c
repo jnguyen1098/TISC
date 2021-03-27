@@ -24,32 +24,43 @@ typedef enum {
     opclRA      /* reg r, int d+s */
 } OPCLASS;
 
-typedef enum {
-    /* RR instructions */
-    opHALT,    /* RR     halt, operands are ignored */
-    opIN,      /* RR     read into reg(r); s and t are ignored */
-    opOUT,     /* RR     write from reg(r), s and t are ignored */
-    opADD,    /* RR     reg(r) = reg(s)+reg(t) */
-    opSUB,    /* RR     reg(r) = reg(s)-reg(t) */
-    opMUL,    /* RR     reg(r) = reg(s)*reg(t) */
-    opDIV,    /* RR     reg(r) = reg(s)/reg(t) */
-    opRRLim,   /* limit of RR opcodes */
+typedef enum { // TODO: consider moving this and other enums/typedefs into new file
 
-    /* RM instructions */
-    opLD,      /* RM     reg(r) = mem(d+reg(s)) */
-    opST,      /* RM     mem(d+reg(s)) = reg(r) */
-    opRMLim,   /* Limit of RM opcodes */
+        // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
+    opHALT,     /**< Halt                                       */
 
-    /* RA instructions */
-    opLDA,     /* RA     reg(r) = d+reg(s) */
-    opLDC,     /* RA     reg(r) = d ; reg(s) is ignored */
-    opJLT,     /* RA     if reg(r)<0 then reg(7) = d+reg(s) */
-    opJLE,     /* RA     if reg(r)<=0 then reg(7) = d+reg(s) */
-    opJGT,     /* RA     if reg(r)>0 then reg(7) = d+reg(s) */
-    opJGE,     /* RA     if reg(r)>=0 then reg(7) = d+reg(s) */
-    opJEQ,     /* RA     if reg(r)==0 then reg(7) = d+reg(s) */
-    opJNE,     /* RA     if reg(r)!=0 then reg(7) = d+reg(s) */
-    opRALim    /* Limit of RA opcodes */
+    opIN,       /**< Read into reg(r)                           */
+    opOUT,      /**< Write from reg(r)                          */
+
+    opADD,      /**< reg(r) = reg(s) + reg(t)                   */
+    opSUB,      /**< reg(r) = reg(s) - reg(t)                   */
+    opMUL,      /**< reg(r) = reg(s) * reg(t)                   */
+    opDIV,      /**< reg(r) = reg(s) / reg(t)                   */
+
+    opRRLim,    /**< RR opcode limit                            */
+
+
+        // REGISTER-TO-MEMORY (RM) INSTRUCTIONS
+    opLD,       /**< reg(r) = mem(d + reg(s))                   */
+    opST,       /**< mem(d + reg(s)) = reg(r)                   */
+
+    opRMLim,    /**< RM opcode limit                            */
+
+
+        // REGISTER-TO-ADDRESS (RA) INSTRUCTIONS
+    opLDA,      /**< reg(r) = d + reg(s)                        */
+    opLDC,      /**< reg(r) = d                                 */
+
+    opJLT,      /**< if reg(r) <  0 then reg(7) = d + reg(s)    */
+    opJLE,      /**< if reg(r) <= 0 then reg(7) = d + reg(s)    */
+    opJGT,      /**< if reg(r) >  0 then reg(7) = d + reg(s)    */
+    opJGE,      /**< if reg(r) >= 0 then reg(7) = d + reg(s)    */
+
+    opJEQ,      /**< if reg(r) == 0 then reg(7) = d + reg(s)    */
+    opJNE,      /**< if reg(r) != 0 then reg(7) = d + reg(s)    */
+
+    opRALim,    /**< RA opcode limit                            */
+
 } OPCODE;
 
 /**
