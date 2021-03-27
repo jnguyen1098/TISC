@@ -2,7 +2,7 @@
  * @brief Success
  */
 /****************************************************/
-/* @file: TISC.c                                       */
+/* @file: TISC.c                                    */
 /* The TM ("Tiny Machine") computer                 */
 /* Compiler Construction: Principles and Practice   */
 /* Kenneth C. Louden                                */
@@ -64,21 +64,21 @@ typedef enum { // TODO: consider moving this and other enums/typedefs into new f
 } OPCODE;
 
 /**
- * LMAO
+ * Step result
  */
 typedef enum {
-    srOKAY,
-    srHALT,
-    srIMEM_ERR,
-    srDMEM_ERR,
-    srZERODIVIDE
+    srOKAY,         /**< OK, no errors  */
+    srHALT,         /**< Halt operations */
+    srIMEM_ERR,     /**< Instruction memory error */
+    srDMEM_ERR,     /**< Data memory error */
+    srZERODIVIDE    /**< Division by zero */
 } STEPRESULT;
 
 typedef struct {
-    int iop  ;
-    int iarg1  ;
-    int iarg2  ;
-    int iarg3  ;
+    int iop;
+    int iarg1;
+    int iarg2;
+    int iarg3;
 } INSTRUCTION;
 
 /** Temporary iterator for iMem. TODO: counter or actual instruction? */
@@ -92,7 +92,7 @@ int icountflag = false;
 
 INSTRUCTION iMem[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
-int reg [NO_REGS];
+int reg[NO_REGS];
 
 const char *opCodeTab[] = {
     /* RR opcodes */
