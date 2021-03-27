@@ -1,5 +1,6 @@
 -Weverything when doing all linting
 separate constants/enums from function defs?
+use FILE *out instead of defaulting to stdout
 char/stream/text .h / .c file?
 re-order .h file functions after
 check if I didn't include all .h / .c in Doxyfile

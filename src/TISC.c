@@ -39,19 +39,19 @@ int done  ;
 
 void write_instruction(int loc)
 { 
-    printf( "%5d: ", loc) ;
-    if ( (loc >= 0) && (loc < IADDR_SIZE) )
-    { 
+    printf("%5d: ", loc);
+    if (loc >= 0 && loc < IADDR_SIZE) { 
         printf("%6s%3d,", opCodeTab[iMem[loc].iop], iMem[loc].iarg1);
-        switch (get_op_class[iMem[loc].iop])
-        { 
-            case opclRR: printf("%1d,%1d", iMem[loc].iarg2, iMem[loc].iarg3);
-                         break;
+        switch (get_op_class[iMem[loc].iop]) { 
+            case opclRR:
+                printf("%1d,%1d", iMem[loc].iarg2, iMem[loc].iarg3);
+                break;
             case opclRM:
-            case opclRA: printf("%3d(%1d)", iMem[loc].iarg2, iMem[loc].iarg3);
-                         break;
+            case opclRA:
+                printf("%3d(%1d)", iMem[loc].iarg2, iMem[loc].iarg3);
+                break;
         }
-        printf ("\n") ;
+        printf ("\n");
     }
 }
 
