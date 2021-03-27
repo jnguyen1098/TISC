@@ -76,8 +76,17 @@ int get_word(void);
 /**
  * Consumes a number from the input and returns it as an int
  *
- * @ return an integer from the input buffer
+ * @return  an integer from the input buffer
  */
 int get_num(void);
+
+/**
+ * Emits an assembly instruction based on the location in the .text
+ *
+ * @pre         loc is a valid, accessible index for the inst array
+ * @param loc   location in the inst array of the opcode to write
+ * @post        stdout has output emitted from TISC
+ */
+void write_instruction(int loc);
 
 #endif
