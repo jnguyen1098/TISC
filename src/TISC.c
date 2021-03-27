@@ -115,7 +115,6 @@ int getWord (void)
     return temp;
 } /* getWord */
 
-/********************************************/
 int skipCh ( char c  )
 {
 
@@ -133,16 +132,14 @@ int atEOL(void)
     return ( !(curr_char = get_next_non_blank_char()) );
 }
 
-/********************************************/
-int error(char *msg, int lineNo, int instNo)
+bool error(char *msg, int line_no, int inst_no)
 { 
-    fprintf(stderr, "Line %d", lineNo);
-    if (instNo >= 0) fprintf(stderr, " (Instruction %d)", instNo);
+    fprintf(stderr, "Line %d", line_no);
+    if (inst_no >= 0) fprintf(stderr, " (Instruction %d)", inst_no);
     fprintf(stderr, "   %s\n", msg);
     return false;
 }
 
-/********************************************/
 int readInstructions (FILE *pgm)
 { 
     enum op_code op;

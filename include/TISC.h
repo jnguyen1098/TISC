@@ -37,11 +37,20 @@ char get_next_non_blank_char(void);
  * it to the user if it exists, otherwise it returns ' '.
  *
  * @post    The line buffer iterator will either point to a
-*           none-blank character or the buffer will be
-*           completely consumed and will point to a NULL-term.
-*
-* @return   The next character, or the ' ' space character.
+ *          none-blank character or the buffer will be
+ *          completely consumed and will point to a NULL-term.
+ *
+ * @return   The next character, or the ' ' space character.
  */
 char get_next_char(void);
+
+/**
+ * Emits an error message and then returns false.
+ *
+ * @param     msg   error to emit
+ * @param line_no   error line number
+ * @param inst_no   error instruction number
+ */
+bool error(char *msg, int line_no, int inst_no);
 
 #endif
