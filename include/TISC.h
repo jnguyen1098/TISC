@@ -18,7 +18,7 @@
 #define NO_REGS     8
 
 /** Program counter register */
-#define PC_REG      7
+#define PC_REG      (NO_REGS - 1)
 
 /** Size of an instruction word */
 #define WORDSIZE    20
