@@ -79,7 +79,7 @@ int data_itr = 0;
 int traceflag = false;
 int icountflag = false;
 
-INSTRUCTION iMem [IADDR_SIZE];
+INSTRUCTION iMem[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
 int reg [NO_REGS];
 
@@ -624,6 +624,7 @@ int main( int argc, char * argv[] )
         done = ! doCommand ();
     while (! done );
     printf("Simulation done.\n");
+
     fclose(pgm);
     return 0;
 }
