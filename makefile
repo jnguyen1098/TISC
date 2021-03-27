@@ -21,7 +21,7 @@ $(EXE): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
-	$(CC) $(CFLAGS) $< -c -o $@
+	$(CC) lmao $(CFLAGS) $< -c -o $@
 
 test: all
 	./test.sh $$TESTARG
