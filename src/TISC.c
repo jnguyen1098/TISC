@@ -127,11 +127,6 @@ int skipCh ( char c  )
     return temp;
 } /* skipCh */
 
-int atEOL(void)
-{ 
-    return ( !(curr_char = get_next_non_blank_char()) );
-}
-
 bool error(char *msg, int line_no, int inst_no)
 { 
     fprintf(stderr, "Line %d", line_no);
@@ -413,8 +408,7 @@ int doCommand (void)
                          inst_itr = num;
                          if ( getNum ()) printcnt = num ;
                      }
-                     //if ( ! atEOL ())
-                     if ( atEOL ())
+                     if (!(curr_char = get_next_non_blank_char()))
                          printf ("Instruction locations?\n");
                      else
                      { 
@@ -436,8 +430,7 @@ int doCommand (void)
                          data_itr = num ;
                          if ( getNum ()) printcnt = num ;
                      }
-                     //if ( ! atEOL ())
-                     if ( atEOL ())
+                     if (!(curr_char = get_next_non_blank_char()))
                          printf("Data locations?\n");
                      else
                      { 
