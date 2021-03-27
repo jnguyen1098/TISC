@@ -68,9 +68,16 @@ bool get_next_char_after(char c);
  * Gets the next word from input buffer, which is defined as a
  * space-delimited group of letters, greedily consumed.
  * 
- * @post    Input buffer will likely be consumed normally
- *@ return  Length of the consumed word. 0 if nonexistence
+ * @post    input buffer will likely be consumed normally
+ * @return  length of the consumed word. 0 if nonexistence
  */
 int get_word(void);
+
+/**
+ * Consumes a number from the input and returns it as an int
+ *
+ * @ return an integer from the input buffer
+ */
+int get_num(void);
 
 #endif
