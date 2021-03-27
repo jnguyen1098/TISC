@@ -70,8 +70,8 @@ typedef struct {
     int iarg3  ;
 } INSTRUCTION;
 
-/******** vars ********/
-int iloc = 0;
+/** Temporary iterator for iMem. TODO: counter or actual instruction? */
+int inst_itr = 0;
 
 /** Temporary iterator for data_memory when using `d` */
 int data_itr = 0;
@@ -501,7 +501,7 @@ int doCommand (void)
                      printcnt = 1 ;
                      if ( getNum ())
                      { 
-                         iloc = num ;
+                         inst_itr = num;
                          if ( getNum ()) printcnt = num ;
                      }
                      //if ( ! atEOL ())
@@ -509,11 +509,11 @@ int doCommand (void)
                          printf ("Instruction locations?\n");
                      else
                      { 
-                         while ((iloc >= 0) && (iloc < IADDR_SIZE)
+                         while ((inst_itr >= 0) && (inst_itr < IADDR_SIZE)
                                  && (printcnt > 0) )
                          { 
-                             writeInstruction(iloc);
-                             iloc++ ;
+                             writeInstruction(inst_itr);
+                             inst_itr++;
                              printcnt-- ;
                          }
                      }
@@ -544,7 +544,7 @@ int doCommand (void)
 
         case 'c' :
                      /***********************************/
-                     iloc = 0;
+                     inst_itr = 0;
                      data_itr = 0;
                      stepcnt = 0;
                      for (regNo = 0;  regNo < NO_REGS ; regNo++)
@@ -566,8 +566,8 @@ int doCommand (void)
             stepcnt = 0;
             while (stepResult == srOKAY)
             { 
-                iloc = reg[PC_REG] ;
-                if ( traceflag ) writeInstruction( iloc ) ;
+                inst_itr = reg[PC_REG] ;
+                if ( traceflag ) writeInstruction(inst_itr) ;
                 stepResult = stepTM ();
                 stepcnt++;
             }
@@ -578,8 +578,8 @@ int doCommand (void)
         {
             while ((stepcnt > 0) && (stepResult == srOKAY))
             {
-                iloc = reg[PC_REG] ;
-                if ( traceflag ) writeInstruction( iloc ) ;
+                inst_itr = reg[PC_REG] ;
+                if ( traceflag ) writeInstruction(inst_itr) ;
                 stepResult = stepTM ();
                 stepcnt-- ;
             }
