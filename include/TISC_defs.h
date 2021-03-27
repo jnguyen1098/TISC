@@ -1,6 +1,12 @@
 /**
  * @file TISC_defs.h
  * @author Jason Nguyen
+ *
+ * @mainpage
+ * This file may not exist in the future. It is supposed to house
+ * definitions, but honestly I may just separate this into a file
+ * full of constants/macros and then another file for structs/enums.
+ *
  * @date March 2021
  * @brief TISC consts/structs/enums
  */

@@ -70,9 +70,9 @@ void getCh (void)
     curr_char = line_buf[++inCol] ? line_buf[inCol] : ' ';
 }
 
-/********************************************/
-bool nonBlank (void)
+bool consume_buf_until_non_blank(void)
 { 
+    // TODO: this function has to die in the global exodus
     while (line_buf[inCol] == ' ')
         inCol++;
 
@@ -83,7 +83,7 @@ bool nonBlank (void)
     }
     else
     { 
-        curr_char = ' ' ;
+        curr_char = ' ';
         return false;
     }
 }
@@ -98,14 +98,14 @@ int getNum (void)
     do
     { 
         sign = 1;
-        while ( nonBlank() && ((curr_char == '+') || (curr_char == '-')) )
+        while (consume_buf_until_non_blank() && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
             if (curr_char == '-')  sign = - sign ;
             getCh();
         }
         term = 0 ;
-        nonBlank();
+        consume_buf_until_non_blank();
         while (isdigit(curr_char))
         { 
             temp = true;
@@ -113,7 +113,7 @@ int getNum (void)
             getCh();
         }
         num = num + (term * sign) ;
-    } while ( (nonBlank()) && ((curr_char == '+') || (curr_char == '-')) ) ;
+    } while ( (consume_buf_until_non_blank()) && ((curr_char == '+') || (curr_char == '-')) ) ;
     return temp;
 }
 
@@ -122,7 +122,7 @@ int getWord (void)
 { 
     int temp = false;
     int length = 0;
-    if (nonBlank ())
+    if (consume_buf_until_non_blank())
     { 
         while (isalnum(curr_char))
         { 
@@ -140,7 +140,7 @@ int skipCh ( char c  )
 {
 
     bool temp = false;
-    if ( nonBlank() && (curr_char == c) )
+    if ( consume_buf_until_non_blank() && (curr_char == c) )
     { 
         getCh();
         temp = true;
@@ -148,11 +148,10 @@ int skipCh ( char c  )
     return temp;
 } /* skipCh */
 
-/********************************************/
 int atEOL(void)
 { 
-    return ( ! nonBlank ());
-} /* atEOL */
+    return ( !consume_buf_until_non_blank());
+}
 
 /********************************************/
 int error(char *msg, int lineNo, int instNo)
@@ -189,7 +188,7 @@ int readInstructions (FILE *pgm)
         buf_len = strlen(line_buf) - 1;
         if (line_buf[buf_len]=='\n') line_buf[buf_len] = '\0';
         else line_buf[++buf_len] = '\0';
-        if ( (nonBlank()) && (line_buf[inCol] != '*') )
+        if ( (consume_buf_until_non_blank()) && (line_buf[inCol] != '*') )
         { 
             if (! getNum())
                 return error("Bad location", lineNo,-1);
