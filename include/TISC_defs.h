@@ -23,7 +23,7 @@
 #define PC_REG      (NO_REGS - 1)
 
 /** Size of an instruction word */
-#define WORDSIZE    20
+#define WORD_SIZE   20
 
 enum op_class {
     opclRR,     /* reg operands r,s,t */

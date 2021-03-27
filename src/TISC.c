@@ -33,7 +33,7 @@ int buf_len;
 int inCol; // TODO: refactor this out
 
 int num;
-char word[WORDSIZE] ;
+char word[WORD_SIZE];
 char curr_char; // TODO: refactor this global variable
 int done  ;
 
@@ -126,7 +126,7 @@ int getWord (void)
     { 
         while (isalnum(curr_char))
         { 
-            if (length < WORDSIZE-1) word [length++] =  curr_char;
+            if (length < WORD_SIZE - 1) word [length++] =  curr_char;
             getCh() ;
         }
         word[length] = '\0';
