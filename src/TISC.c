@@ -37,7 +37,7 @@ char word[WORD_SIZE];
 char curr_char; // TODO: refactor this global variable
 int done  ;
 
-void writeInstruction ( int loc )
+void write_instruction(int loc)
 { 
     printf( "%5d: ", loc) ;
     if ( (loc >= 0) && (loc < IADDR_SIZE) )
@@ -53,7 +53,7 @@ void writeInstruction ( int loc )
         }
         printf ("\n") ;
     }
-} /* writeInstruction */
+}
 
 char get_next_char(void)
 { 
@@ -413,7 +413,7 @@ int doCommand (void)
                          while ((inst_itr >= 0) && (inst_itr < IADDR_SIZE)
                                  && (printcnt > 0) )
                          { 
-                             writeInstruction(inst_itr);
+                             write_instruction(inst_itr);
                              inst_itr++;
                              printcnt-- ;
                          }
@@ -426,7 +426,7 @@ int doCommand (void)
                      if (get_num())
                      { 
                          data_itr = num ;
-                         if (get_num()) printcnt = num ;
+                         if (get_num()) printcnt = num;
                      }
                      if (!(curr_char = get_next_non_blank_char()))
                          printf("Data locations?\n");
@@ -467,7 +467,7 @@ int doCommand (void)
             while (stepResult == srOKAY)
             { 
                 inst_itr = reg[PC_REG] ;
-                if ( traceflag ) writeInstruction(inst_itr) ;
+                if (traceflag) write_instruction(inst_itr) ;
                 stepResult = stepTM ();
                 stepcnt++;
             }
@@ -479,7 +479,7 @@ int doCommand (void)
             while ((stepcnt > 0) && (stepResult == srOKAY))
             {
                 inst_itr = reg[PC_REG] ;
-                if ( traceflag ) writeInstruction(inst_itr) ;
+                if (traceflag) write_instruction(inst_itr) ;
                 stepResult = stepTM ();
                 stepcnt-- ;
             }
