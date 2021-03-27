@@ -20,15 +20,28 @@
 // pre post param return see
 
 /**
- * Consumes line input until current character is non-blank.
+ * Consumes line input until current character is non-blank,
+ * then returns the character to the user (or '\0' if EOF)
  *
  * @post    Line buffer iterator will either point to a non-
  *          blank character and sent it to the current char
  *          variable, or will stop at the NULL-terminator
  *
- * @return  true if non-blank character exists
- *          false if NULL-terminator is reached instead
+ * @return  the next non-blank charcter if it exists;
+ *          '\0' otherwise.
  */
-bool consume_buf_until_non_blank(void);
+char get_next_non_blank_char(void);
+
+/**
+ * Consumes the next character in the line buffer and returns
+ * it to the user if it exists, otherwise it returns ' '.
+ *
+ * @post    The line buffer iterator will either point to a
+*           none-blank character or the buffer will be
+*           completely consumed and will point to a NULL-term.
+*
+* @return   The next character, or the ' ' space character.
+ */
+char get_next_char(void);
 
 #endif

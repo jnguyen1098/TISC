@@ -64,28 +64,17 @@ void writeInstruction ( int loc )
     }
 } /* writeInstruction */
 
-/********************************************/
-void getCh (void)
+char get_next_char(void)
 { 
-    curr_char = line_buf[++inCol] ? line_buf[inCol] : ' ';
+    return line_buf[++inCol] ? line_buf[inCol] : ' ';
 }
 
-bool consume_buf_until_non_blank(void)
+char get_next_non_blank_char(void)
 { 
     // TODO: this function has to die in the global exodus
     while (line_buf[inCol] == ' ')
         inCol++;
-
-    if (line_buf[inCol])
-    { 
-        curr_char = line_buf[inCol];
-        return true; 
-    }
-    else
-    { 
-        curr_char = ' ';
-        return false;
-    }
+    return line_buf[inCol] ? line_buf[inCol] : '\0';
 }
 
 /********************************************/
@@ -98,22 +87,22 @@ int getNum (void)
     do
     { 
         sign = 1;
-        while (consume_buf_until_non_blank() && ((curr_char == '+') || (curr_char == '-')) )
+        while ( (curr_char = get_next_non_blank_char()) && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
             if (curr_char == '-')  sign = - sign ;
-            getCh();
+            curr_char = get_next_char();
         }
         term = 0 ;
-        consume_buf_until_non_blank();
+        curr_char = get_next_non_blank_char();
         while (isdigit(curr_char))
         { 
             temp = true;
             term = term * 10 + ( curr_char - '0' ) ;
-            getCh();
+            curr_char = get_next_char();
         }
         num = num + (term * sign) ;
-    } while ( (consume_buf_until_non_blank()) && ((curr_char == '+') || (curr_char == '-')) ) ;
+    } while ( (curr_char = get_next_non_blank_char())  && ((curr_char == '+') || (curr_char == '-')) ) ;
     return temp;
 }
 
@@ -122,12 +111,12 @@ int getWord (void)
 { 
     int temp = false;
     int length = 0;
-    if (consume_buf_until_non_blank())
+    if ((curr_char = get_next_non_blank_char()))
     { 
         while (isalnum(curr_char))
         { 
             if (length < WORD_SIZE - 1) word [length++] =  curr_char;
-            getCh() ;
+            curr_char = get_next_char();
         }
         word[length] = '\0';
         temp = (length != 0);
@@ -140,9 +129,9 @@ int skipCh ( char c  )
 {
 
     bool temp = false;
-    if ( consume_buf_until_non_blank() && (curr_char == c) )
+    if ((curr_char = get_next_non_blank_char()) && (curr_char == c) )
     { 
-        getCh();
+        curr_char = get_next_char();
         temp = true;
     }
     return temp;
@@ -150,7 +139,7 @@ int skipCh ( char c  )
 
 int atEOL(void)
 { 
-    return ( !consume_buf_until_non_blank());
+    return ( !(curr_char = get_next_non_blank_char()) );
 }
 
 /********************************************/
@@ -188,7 +177,7 @@ int readInstructions (FILE *pgm)
         buf_len = strlen(line_buf) - 1;
         if (line_buf[buf_len]=='\n') line_buf[buf_len] = '\0';
         else line_buf[++buf_len] = '\0';
-        if ( (consume_buf_until_non_blank()) && (line_buf[inCol] != '*') )
+        if ( (curr_char = get_next_non_blank_char()) && (line_buf[inCol] != '*') )
         { 
             if (! getNum())
                 return error("Bad location", lineNo,-1);
