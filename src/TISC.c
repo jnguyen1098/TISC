@@ -83,12 +83,15 @@ INSTRUCTION iMem[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
 int reg [NO_REGS];
 
-char * opCodeTab[]
-= {"HALT","IN","OUT","ADD","SUB","MUL","DIV","????",
+const char *opCodeTab[] = {
     /* RR opcodes */
-    "LD","ST","????", /* RM opcodes */
-    "LDA","LDC","JLT","JLE","JGT","JGE","JEQ","JNE","????"
-        /* RA opcodes */
+    "HALT", "IN", "OUT", "ADD", "SUB", "MUL", "DIV", "<unknown RR>",
+
+    /* RM opcodes */
+    "LD", "ST", "<unknown RM>",
+
+    /* RA opcodes */
+    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "<unknown RA>",
 };
 
 char * stepResultTab[]
@@ -105,7 +108,7 @@ int buf_len;
 /** Not the current char, but a text column iterator for input. */
 int inCol; // TODO: refactor this out
 
-int num  ;
+int num;
 char word[WORDSIZE] ;
 char curr_char; // TODO: refactor this global variable
 int done  ;
@@ -167,7 +170,7 @@ int getNum (void)
     int sign;
     int term;
     bool temp = false;
-    num = 0 ;
+    num = 0;
     do
     { 
         sign = 1;
@@ -188,7 +191,7 @@ int getNum (void)
         num = num + (term * sign) ;
     } while ( (nonBlank()) && ((curr_char == '+') || (curr_char == '-')) ) ;
     return temp;
-} /* getNum */
+}
 
 /********************************************/
 int getWord (void)
