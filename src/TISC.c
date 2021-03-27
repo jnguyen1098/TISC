@@ -221,7 +221,7 @@ int readInstructions (FILE *pgm)
 } /* readInstructions */
 
 
-enum step_result stepTM (void)
+enum step_result stepTM(void)
 { 
     struct instruction currentinstruction;
     int pc;

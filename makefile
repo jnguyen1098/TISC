@@ -55,8 +55,8 @@ clang-tidy:
 
 clang-format:
 	@echo "Running clang-format"
-	diff -u <(clang-format $(INC)/*.h) <(cat $(INC)/*.h)
-	diff -u <(clang-format $(SRC)/*.c) <(cat $(SRC)/*.c)
+	diff -u <(cat $(SRC)/*.c) <(clang-format $(SRC)/*.c)
+	diff -u <(cat $(INC)/*.h) <(clang-format $(INC)/*.h)
 
 documentation:
 	doxygen Doxyfile
