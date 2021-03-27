@@ -1,5 +1,5 @@
 -Weverything when doing all linting
-EXTRACT_ALL Doxyfile
+separate constants/enums from function defs?
 re-order .h file functions after
 check if I didn't include all .h / .c in Doxyfile
 if reengineering: gcov, cunit

@@ -13,15 +13,18 @@ INC = include
 SRC = src
 TESTS = tests
 
+_OBJS = $(PROJ)
+
 EXE = $(BIN)/$(PROJ)
-OBJS = $(BIN)/$(PROJ).o
+DEPS = $(INC)/$(PROJ).h
+OBJS = $(addprefix $(BIN)/,$(addsuffix .o,$(_OBJS)))
 
 all: $(EXE)
 
 $(EXE): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
+$(BIN)/%.o: $(SRC)/%.c $(DEPS)
 	$(CC) $(CFLAGS) $< -c -o $@
 
 test: all

@@ -31,7 +31,7 @@ typedef enum {
     opclRA      /* reg r, int d+s */
 } OPCLASS;
 
-typedef enum { // TODO: consider moving this and other enums/typedefs into new file
+typedef enum {
 
         // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
     opHALT,     /**< Halt                                       */
