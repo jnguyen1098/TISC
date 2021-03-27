@@ -246,7 +246,7 @@ int error(char *msg, int lineNo, int instNo)
     if (instNo >= 0) fprintf(stderr, " (Instruction %d)", instNo);
     fprintf(stderr, "   %s\n", msg);
     return false;
-} /* error */
+}
 
 /********************************************/
 int readInstructions (FILE *pgm)
@@ -396,7 +396,7 @@ STEPRESULT stepTM (void)
                 buf_len = strlen(line_buf);
                 inCol = 0;
                 ok = getNum();
-                if ( ! ok ) printf ("Illegal value\n");
+                if ( ! ok ) fprintf(stderr, "Illegal value\n");
                 else reg[r] = num;
             }
             while (! ok);
@@ -572,7 +572,7 @@ int doCommand (void)
 
         case 'q' : return false;  /* break; */
 
-        default : printf("Command %c unknown.\n", cmd); break;
+        default : fprintf(stderr, "Command %c unknown.\n", cmd); break;
     }  /* case */
     stepResult = srOKAY;
     if ( stepcnt > 0 )
