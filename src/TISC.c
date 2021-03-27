@@ -226,14 +226,15 @@ enum step_result stepTM(void)
     int r, s, t, m;
     int ok;
 
-    int pc = reg[PC_REG];
+    int program_counter = reg[PC_REG];
 
-    if (pc < 0 || pc > IADDR_SIZE) {
+    if (program_counter < 0 || program_counter > IADDR_SIZE) {
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
 
-    reg[PC_REG] = pc + 1 ;
-    struct instruction curr_instruction = iMem[pc];
+    reg[PC_REG]++;
+    struct instruction curr_instruction = iMem[program_counter];
+
     switch (get_op_class[curr_instruction.iop])
     { 
         case opclRR :
@@ -484,7 +485,7 @@ int doCommand (void)
                 stepcnt-- ;
             }
         }
-        printf( "%s\n",stepResultTab[stepResult] );
+        puts(stepResultTab[stepResult]);
     }
     return true;
 } /* doCommand */
