@@ -221,7 +221,7 @@ int readInstructions (FILE *pgm)
 } /* readInstructions */
 
 
-enum step_result stepTM(void)
+enum step_result step(void)
 { 
     int r, s, t, m;
     int ok;
@@ -313,9 +313,9 @@ enum step_result stepTM(void)
         case opJNE :    if ( reg[r] != 0 ) reg[PC_REG] = m ; break;
 
                             /* end of legal instructions */
-    } /* case */
+    }
     return srOKAY ;
-} /* stepTM */
+}
 
 /********************************************/
 int doCommand (void)
@@ -468,7 +468,7 @@ int doCommand (void)
             { 
                 inst_itr = reg[PC_REG] ;
                 if (traceflag) write_instruction(inst_itr) ;
-                stepResult = stepTM ();
+                stepResult = step();
                 stepcnt++;
             }
             if ( icountflag )
@@ -480,7 +480,7 @@ int doCommand (void)
             {
                 inst_itr = reg[PC_REG] ;
                 if (traceflag) write_instruction(inst_itr) ;
-                stepResult = stepTM ();
+                stepResult = step();
                 stepcnt-- ;
             }
         }
