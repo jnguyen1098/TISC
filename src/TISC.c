@@ -21,9 +21,6 @@ int inst_itr = 0;
 /** Temporary iterator for data_memory when using `d` */
 int data_itr = 0;
 
-int traceflag = false;
-int icountflag = false;
-
 struct instruction iMem[IADDR_SIZE];
 int data_memory[DADDR_SIZE];
 int reg[NO_REGS];
@@ -355,6 +352,8 @@ enum step_result stepTM (void)
 /********************************************/
 int doCommand (void)
 { 
+    static int traceflag = false;
+    static int icountflag = false;
     char cmd;
     int stepcnt=0, i;
     int printcnt;
