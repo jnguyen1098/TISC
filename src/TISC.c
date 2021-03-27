@@ -110,8 +110,6 @@ char * stepResultTab[]
     "Data Memory Fault","Division by 0"
 };
 
-char pgmName[20];
-
 /** Current line buffer. */
 char line_buf[BUFSIZ];
 int buf_len;
@@ -619,10 +617,8 @@ int main( int argc, char * argv[] )
         printf("usage: %s <filename>\n",argv[0]);
         exit(1);
     }
-    strcpy(pgmName,argv[1]) ;
-    if (strchr (pgmName, '.') == NULL)
-        strcat(pgmName,".tm");
-    FILE *program_text = fopen(pgmName, "r");
+
+    FILE *program_text = fopen(argv[1], "r");
     if (program_text == NULL)
     {
         printf("file '%s' not found\n",pgmName);
