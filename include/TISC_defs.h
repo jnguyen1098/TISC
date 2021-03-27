@@ -111,11 +111,11 @@ get_op_class[] = {
  * Step result
  */
 enum step_result {
-    srOKAY,         /**< OK, no errors  */
-    srHALT,         /**< Halt operations */
-    srIMEM_ERR,     /**< Instruction memory error */
-    srDMEM_ERR,     /**< Data memory error */
-    srZERODIVIDE    /**< Division by zero */
+    srOKAY,                             /**< OK, no errors  */
+    srHALT,                             /**< Halt operations */
+    STEP_ILLEGAL_PROGRAM_COUNTER_INDEX, /**< Illegal program counter index */
+    srDMEM_ERR,                         /**< Data memory error */
+    srZERODIVIDE                        /**< Division by zero */
 };
 
 /**

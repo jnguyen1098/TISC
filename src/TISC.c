@@ -223,43 +223,44 @@ int readInstructions (FILE *pgm)
 
 enum step_result stepTM(void)
 { 
-    struct instruction currentinstruction;
-    int pc;
     int r, s, t, m;
     int ok;
 
-    pc = reg[PC_REG] ;
-    if ( (pc < 0) || (pc > IADDR_SIZE)  )
-        return srIMEM_ERR ;
+    int pc = reg[PC_REG];
+
+    if (pc < 0 || pc > IADDR_SIZE) {
+        return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
+    }
+
     reg[PC_REG] = pc + 1 ;
-    currentinstruction = iMem[ pc ] ;
-    switch (get_op_class[currentinstruction.iop])
+    struct instruction curr_instruction = iMem[pc];
+    switch (get_op_class[curr_instruction.iop])
     { 
         case opclRR :
             /***********************************/
-            r = currentinstruction.iarg1 ;
-            s = currentinstruction.iarg2 ;
-            t = currentinstruction.iarg3 ;
+            r = curr_instruction.iarg1 ;
+            s = curr_instruction.iarg2 ;
+            t = curr_instruction.iarg3 ;
             break;
 
         case opclRM :
             /***********************************/
-            r = currentinstruction.iarg1 ;
-            s = currentinstruction.iarg3 ;
-            m = currentinstruction.iarg2 + reg[s] ;
+            r = curr_instruction.iarg1 ;
+            s = curr_instruction.iarg3 ;
+            m = curr_instruction.iarg2 + reg[s] ;
             if ( (m < 0) || (m > DADDR_SIZE))
                 return srDMEM_ERR ;
             break;
 
         case opclRA :
             /***********************************/
-            r = currentinstruction.iarg1 ;
-            s = currentinstruction.iarg3 ;
-            m = currentinstruction.iarg2 + reg[s] ;
+            r = curr_instruction.iarg1 ;
+            s = curr_instruction.iarg3 ;
+            m = curr_instruction.iarg2 + reg[s] ;
             break;
     } /* case */
 
-    switch ( currentinstruction.iop)
+    switch ( curr_instruction.iop)
     { 
         /* RR instructions */
         case opHALT :
@@ -303,7 +304,7 @@ enum step_result stepTM(void)
 
                        /*************** RA instructions ********************/
         case opLDA :    reg[r] = m ; break;
-        case opLDC :    reg[r] = currentinstruction.iarg2 ;   break;
+        case opLDC :    reg[r] = curr_instruction.iarg2 ;   break;
         case opJLT :    if ( reg[r] <  0 ) reg[PC_REG] = m ; break;
         case opJLE :    if ( reg[r] <=  0 ) reg[PC_REG] = m ; break;
         case opJGT :    if ( reg[r] >  0 ) reg[PC_REG] = m ; break;
