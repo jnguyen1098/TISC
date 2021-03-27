@@ -1,0 +1,36 @@
+/*
+  CIS*4650 - Compilers Checkpoint 3
+  File: 1.cm
+  Author: Braydon Johnson & Neivin Mathew
+  
+  Description:
+  This program contains a function that finds the smallest value
+  out of the variables that are passed in to it. The main method
+  outputs the smallest variable.
+
+  This program demonstrates function calls and conditional
+  expressions.
+*/
+
+int getSmallest(int a, int b, int c){
+	int smallest;
+	smallest = a;
+
+	if (b < smallest)
+		smallest = b;
+
+	if (c < smallest)
+		smallest = c;
+
+	return smallest;
+}
+
+void main (void)
+{
+  int x; int y; int z;
+  x = 10;
+  y = 6;
+  z = 12;
+
+  output(getSmallest(x, y,z));
+}

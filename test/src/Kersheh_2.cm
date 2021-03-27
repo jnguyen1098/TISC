@@ -1,0 +1,22 @@
+/*
+  Created by: Matt Breckon and Dean Way
+  File name: 2.cm
+  Sample program hardcodes an array of size 3 and passes it to a function that
+  prints out each integer.
+  -- This program compiles with lexical and/or syntactic errors.
+  -- Error 1: Third variable "size" on function input is of type void.
+  -- Error 2: main() type declaration is misspelled as "vod"
+*/
+
+void printIntegers(int size) {
+  int i;
+  i = 0;
+  while(i < size) {
+    output(i);
+    i = i + 1;
+  }
+}
+
+void main(void) {
+  printIntegers(5);
+}

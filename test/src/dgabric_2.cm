@@ -1,0 +1,15 @@
+/*
+Tests recursion and if statements and global variables and return without value.
+*/
+int x;
+
+void f(void){
+if(x>10)return;
+    x=x+1;
+    f();
+}
+void main(void){
+x=input();
+f();
+output(x);
+}

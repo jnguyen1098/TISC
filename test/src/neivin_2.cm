@@ -1,0 +1,24 @@
+/*
+  CIS*4650 - Compilers Checkpoint 3
+  File: 2.cm
+  Author: Braydon Johnson & Neivin Mathew
+  
+  Description:
+  This program simply reads an array size from input and
+  prints out all the numbers from 1 to that number. 
+
+  This program intends to demonstrate loop functionality.
+*/
+
+void main(void){
+  int i;
+  int x;
+
+  x = input();
+  i = 1;
+
+  while(i <= x){
+  	output(i);
+  	i = i + 1;
+  }
+}

@@ -12,4 +12,11 @@ The "Tiny Machine" computer was created by Kenneth C. Louden from "Compiler Cons
 
 [Tiny Resources](https://github.com/ejacky/tiny)
 
+## Attribution
 
+Test files from the C-Minus projects were taken from the following GitHub users:
+
+- DanielGabric
+- Kersheh
+- LonPi
+- neivin

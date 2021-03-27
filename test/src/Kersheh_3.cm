@@ -1,0 +1,14 @@
+/*
+  Created by: Matt Breckon and Dean Way
+  File name: 3.cm
+*/
+
+void main(void) {
+  int a[10];
+  a[1] = 4;
+  a[a[1] / 2] = 6;
+  a[1 + 2] = 22;
+  output(a[1]);
+  output(a[2]);
+  output(a[3]);
+}

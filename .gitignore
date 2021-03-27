@@ -1,6 +1,7 @@
 # Object and binary files
 *.o
 TISC
+tm
 
 # imagine using vim...
 *.swp
