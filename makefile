@@ -39,19 +39,19 @@ lint: all
 
 cppcheck:
 	@echo "Running cppcheck"
-	cppcheck --enable=all -Iinclude --inconclusive -v $(SRC)
+	cppcheck --enable=all -I$(INC) --inconclusive -v $(SRC)
 
 splint:
 	@echo "Running splint"
-	splint -Iinclude $(SRC)/*.c
+	splint -I$(INC) $(SRC)/*.c
 
 clang-analyze:
 	@echo "Running clang's static analyzer"
-	clang --analyze src/*.c -Iinclude
+	clang --analyze $(SRC)/*.c -I$(INC)
 
 clang-tidy:
 	@echo "Running clang-tidy"
-	clang-tidy -checks=* $(SRC)/*.c -- -Iinclude
+	clang-tidy -checks=* $(SRC)/*.c -- -I$(INC)
 
 clang-format:
 	@echo "Running clang-format"
