@@ -69,7 +69,7 @@ char get_next_non_blank_char(void)
 }
 
 /********************************************/
-int getNum (void)
+int get_num(void)
 { 
     int sign;
     int term;
@@ -159,7 +159,7 @@ int readInstructions (FILE *pgm)
         else line_buf[++buf_len] = '\0';
         if ( (curr_char = get_next_non_blank_char()) && (line_buf[inCol] != '*') )
         { 
-            if (! getNum())
+            if (!get_num())
                 return error("Bad location", lineNo,-1);
             loc = num;
             if (loc > IADDR_SIZE)
@@ -178,17 +178,17 @@ int readInstructions (FILE *pgm)
             { 
                 case opclRR :
                     /***********************************/
-                    if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
+                    if ( (!get_num()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad first register", lineNo,loc);
                     arg1 = num;
                     if ( !get_next_char_after(','))
                         return error("Missing comma", lineNo, loc);
-                    if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
+                    if ( (!get_num()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad second register", lineNo, loc);
                     arg2 = num;
                     if ( !get_next_char_after(',')) 
                         return error("Missing comma", lineNo,loc);
-                    if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
+                    if ( (!get_num()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad third register", lineNo,loc);
                     arg3 = num;
                     break;
@@ -196,17 +196,17 @@ int readInstructions (FILE *pgm)
                 case opclRM :
                 case opclRA :
                     /***********************************/
-                    if ( (! getNum ()) || (num < 0) || (num >= NO_REGS) )
+                    if ( (!get_num()) || (num < 0) || (num >= NO_REGS) )
                         return error("Bad first register", lineNo,loc);
                     arg1 = num;
                     if ( !get_next_char_after(','))
                         return error("Missing comma", lineNo,loc);
-                    if (! getNum ())
+                    if (!get_num())
                         return error("Bad displacement", lineNo,loc);
                     arg2 = num;
                     if ( !get_next_char_after('(') && !get_next_char_after(',') )
                         return error("Missing LParen", lineNo,loc);
-                    if ( (! getNum ()) || (num < 0) || (num >= NO_REGS))
+                    if ( (!get_num()) || (num < 0) || (num >= NO_REGS))
                         return error("Bad second register", lineNo,loc);
                     arg3 = num;
                     break;
@@ -278,7 +278,7 @@ enum step_result stepTM (void)
                 fgets(line_buf, BUFSIZ, stdin);
                 buf_len = strlen(line_buf);
                 inCol = 0;
-                ok = getNum();
+                ok = get_num();
                 if ( ! ok ) fprintf(stderr, "Illegal value\n");
                 else reg[r] = num;
             }
@@ -384,7 +384,7 @@ int doCommand (void)
         case 's' :
             /***********************************/
             stepcnt = 1;
-            if ( getNum ())  stepcnt = abs(num);
+            if (get_num())  stepcnt = abs(num);
             break;
 
         case 'g' :   stepcnt = 1 ;     break;
@@ -401,10 +401,10 @@ int doCommand (void)
         case 'i' :
                      /***********************************/
                      printcnt = 1 ;
-                     if ( getNum ())
+                     if (get_num())
                      { 
                          inst_itr = num;
-                         if ( getNum ()) printcnt = num ;
+                         if (get_num()) printcnt = num ;
                      }
                      if (!(curr_char = get_next_non_blank_char()))
                          printf ("Instruction locations?\n");
@@ -423,10 +423,10 @@ int doCommand (void)
         case 'd' :
                      /***********************************/
                      printcnt = 1 ;
-                     if ( getNum  ())
+                     if (get_num())
                      { 
                          data_itr = num ;
-                         if ( getNum ()) printcnt = num ;
+                         if (get_num()) printcnt = num ;
                      }
                      if (!(curr_char = get_next_non_blank_char()))
                          printf("Data locations?\n");
