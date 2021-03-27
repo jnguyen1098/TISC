@@ -1,7 +1,0 @@
-TM  simulation (enter h for help)...
-Enter command: OUT instruction prints: 4
-OUT instruction prints: 6
-OUT instruction prints: 22
-HALT: 0,0,0
-Halted
-Enter command: Simulation done.
