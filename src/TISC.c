@@ -35,7 +35,6 @@ int inCol; // TODO: refactor this out
 int num;
 char word[WORD_SIZE];
 char curr_char; // TODO: refactor this global variable
-int done  ;
 
 void write_instruction(int loc)
 { 
@@ -358,7 +357,7 @@ int doCommand (void)
             printf("   r(egs          "\
                     "Print the contents of the registers\n");
             printf("   i(Mem <b <n>>  "\
-                    "Print n iMem locations starting at b\n"); // TODO: change iMem
+                        "Print n iMem locations starting at b\n"); // TODO: change iMem
             printf("   d(Mem <b <n>>  "\
                     "Print n data memory locations starting at b\n");
             printf("   t(race         "\
@@ -511,9 +510,10 @@ int main(int argc, char *argv[])
     /* reset( input ); */
     /* read-eval-print */
     printf("TM  simulation (enter h for help)...\n");
-    do
-        done = ! doCommand ();
-    while (! done );
+
+    while (doCommand())
+        ;
+
     printf("Simulation done.\n");
 
     fclose(program_text);
