@@ -31,7 +31,7 @@ enum op_class {
     opclRA      /* reg r, int d+s */
 };
 
-enum {
+enum op_code {
 
         // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
     opHALT,     /**< Halt                                       */
@@ -68,7 +68,7 @@ enum {
 
     opRALim,    /**< RA opcode limit                            */
 
-} op_code;
+};
 
 /**
  * Step result
