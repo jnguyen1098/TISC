@@ -97,7 +97,6 @@ char * stepResultTab[]
 };
 
 char pgmName[20];
-FILE *pgm  ;
 
 char in_Line[LINESIZE] ;
 int lineLen ;
@@ -234,7 +233,7 @@ int error( char * msg, int lineNo, int instNo)
 } /* error */
 
 /********************************************/
-int readInstructions (void)
+int readInstructions (FILE *pgm)
 { 
     OPCODE op;
     int arg1, arg2, arg3;
@@ -605,7 +604,7 @@ int main( int argc, char * argv[] )
     strcpy(pgmName,argv[1]) ;
     if (strchr (pgmName, '.') == NULL)
         strcat(pgmName,".tm");
-    pgm = fopen(pgmName,"r");
+    FILE *pgm = fopen(pgmName, "r");
     if (pgm == NULL)
     {
         printf("file '%s' not found\n",pgmName);
@@ -613,8 +612,10 @@ int main( int argc, char * argv[] )
     }
 
     /* read the program */
-    if ( ! readInstructions ())
-        exit(1) ;
+    if (!readInstructions(pgm)) {
+        exit(1);
+    }
+
     /* switch input file to terminal */
     /* reset( input ); */
     /* read-eval-print */
