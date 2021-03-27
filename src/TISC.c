@@ -605,12 +605,7 @@ int doCommand (void)
     return true;
 } /* doCommand */
 
-
-/********************************************/
-/* E X E C U T I O N   B E G I N S   H E R E */
-/********************************************/
-
-int main( int argc, char * argv[] )
+int main(int argc, char *argv[])
 {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s filename\n", argv[0]);
@@ -640,4 +635,3 @@ int main( int argc, char * argv[] )
     fclose(program_text);
     return 0;
 }
-
