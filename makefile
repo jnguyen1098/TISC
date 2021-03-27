@@ -9,8 +9,9 @@ SHELL = /bin/bash
 PROJ = TISC
 
 BIN = bin
-SRC = src
 INC = include
+SRC = src
+TESTS = tests
 
 EXE = $(BIN)/$(PROJ)
 OBJS = $(BIN)/$(PROJ).o
@@ -24,7 +25,7 @@ $(BIN)/%.o: $(SRC)/%.c $(INC)/%.h
 	$(CC) $(CFLAGS) $< -c -o $@
 
 test: all
-	./test.sh $$TESTARG
+	cd $(TESTS) && ./run_tests.sh $$TESTARG
 
 lint: all
 	make cppcheck
@@ -58,7 +59,7 @@ documentation:
 	doxygen Doxyfile
 
 clean:
-	rm -rf $(BIN)/* test/tm html/ latex/ *.plist $(INC)/*.gch test/out/*
+	rm -rf $(BIN)/* $(TESTS)/tm html/ latex/ *.plist $(INC)/*.gch $(TESTS)/out/*
 
 .PHONY: all test lint cppcheck splint clang-analyze\
         clang-tidy clang-format documentation clean

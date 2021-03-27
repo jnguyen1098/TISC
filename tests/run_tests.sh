@@ -5,7 +5,7 @@ CC="gcc"
 VALGRIND="valgrind --show-leak-kinds=all --track-origins=yes --leak-check=full \
           --error-exitcode=1 --errors-for-leak-kinds=all --error-limit=no"
 
-TEST_DIR="test"
+TEST_DIR="."
 
 ASMS="$TEST_DIR/asm"
 INPUTS="$TEST_DIR/in"
@@ -13,7 +13,7 @@ OUTPUTS="$TEST_DIR/out"
 
 BOOTSTRAP_SRC="$TEST_DIR/tm.c"
 
-TISC_BIN=bin/TISC
+TISC_BIN=../bin/TISC
 BOOTSTRAP_BIN="$TEST_DIR/tm"
 
 TMP_OUT="_tisc_test_result_output.tmp"
@@ -24,7 +24,7 @@ VALGRIND_FAILED=false
 trap 'rm -f $TMP_OUT; rm -f exit' 0 2 3 15
 
 echo "Building project"
-make all
+cd .. && make all && cd -
 echo ""
 
 if [ ! -f "$BOOTSTRAP_BIN" ]; then
