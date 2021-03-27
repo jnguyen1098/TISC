@@ -98,9 +98,13 @@ char * stepResultTab[]
 
 char pgmName[20];
 
-char in_Line[LINESIZE] ;
+/** Current line buffer. */
+char line_buf[BUFSIZ];
 int lineLen ;
-int inCol  ;
+
+/** Not the current char, but a text column iterator for input. */
+int inCol; // TODO: refactor this out
+
 int num  ;
 char word[WORDSIZE] ;
 char curr_char; // TODO: refactor this global variable
@@ -137,7 +141,7 @@ void writeInstruction ( int loc )
 void getCh (void)
 { 
     if (++inCol < lineLen)
-        curr_char = in_Line[inCol] ;
+        curr_char = line_buf[inCol];
     else curr_char = ' ' ;
 } /* getCh */
 
@@ -145,11 +149,11 @@ void getCh (void)
 bool nonBlank (void)
 { 
     while ((inCol < lineLen)
-            && (in_Line[inCol] == ' ') )
+            && (line_buf[inCol] == ' ') )
         inCol++ ;
     if (inCol < lineLen)
     { 
-        curr_char = in_Line[inCol] ;
+        curr_char = line_buf[inCol] ;
         return true; }
     else
     { 
@@ -251,14 +255,14 @@ int readInstructions (FILE *pgm)
         iMem[loc].iarg3 = 0 ;
     }
     lineNo = 0 ;
-    while (fgets(in_Line, LINESIZE, pgm))
+    while (fgets(line_buf, BUFSIZ, pgm))
     { 
         inCol = 0 ; 
         lineNo++;
-        lineLen = strlen(in_Line)-1 ;
-        if (in_Line[lineLen]=='\n') in_Line[lineLen] = '\0' ;
-        else in_Line[++lineLen] = '\0';
-        if ( (nonBlank()) && (in_Line[inCol] != '*') )
+        lineLen = strlen(line_buf)-1 ;
+        if (line_buf[lineLen]=='\n') line_buf[lineLen] = '\0' ;
+        else line_buf[++lineLen] = '\0';
+        if ( (nonBlank()) && (line_buf[inCol] != '*') )
         { 
             if (! getNum())
                 return error("Bad location", lineNo,-1);
@@ -376,8 +380,8 @@ STEPRESULT stepTM (void)
             { 
                 printf("Enter value for IN instruction: ") ;
                 fflush (stdout);
-                fgets(in_Line, LINESIZE, stdin);
-                lineLen = strlen(in_Line) ;
+                fgets(line_buf, BUFSIZ, stdin);
+                lineLen = strlen(line_buf) ;
                 inCol = 0;
                 ok = getNum();
                 if ( ! ok ) printf ("Illegal value\n");
@@ -430,8 +434,8 @@ int doCommand (void)
     { 
         printf ("Enter command: ");
         fflush (stdout);
-        fgets(in_Line, LINESIZE, stdin);
-        lineLen = strlen(in_Line);
+        fgets(line_buf, BUFSIZ, stdin);
+        lineLen = strlen(line_buf);
         inCol = 0;
     }
     while (! getWord ());

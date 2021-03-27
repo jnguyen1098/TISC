@@ -20,9 +20,6 @@
 /** Program counter register */
 #define PC_REG      7
 
-/** Size of an input line */
-#define LINESIZE    121
-
 /** Size of an instruction word */
 #define WORDSIZE    20
 
