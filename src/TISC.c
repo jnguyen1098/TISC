@@ -252,7 +252,7 @@ int readInstructions (void)
         iMem[loc].iarg3 = 0 ;
     }
     lineNo = 0 ;
-    while (fgets(in_Line, LINESIZE-2, pgm))
+    while (fgets(in_Line, LINESIZE, pgm))
     { 
         inCol = 0 ; 
         lineNo++;
@@ -377,7 +377,7 @@ STEPRESULT stepTM (void)
             { 
                 printf("Enter value for IN instruction: ") ;
                 fflush (stdout);
-                fgets(in_Line, LINESIZE - 2, stdin);
+                fgets(in_Line, LINESIZE, stdin);
                 lineLen = strlen(in_Line) ;
                 inCol = 0;
                 ok = getNum();
@@ -431,7 +431,7 @@ int doCommand (void)
     { 
         printf ("Enter command: ");
         fflush (stdout);
-        fgets(in_Line, LINESIZE - 2, stdin);
+        fgets(in_Line, LINESIZE, stdin);
         lineLen = strlen(in_Line);
         inCol = 0;
     }
