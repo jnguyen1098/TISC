@@ -3,6 +3,9 @@
 TISC
 tm
 
+# Test files
+test/out/*.out
+
 # imagine using vim...
 *.swp
 

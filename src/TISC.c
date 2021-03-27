@@ -430,7 +430,6 @@ int doCommand (void)
     do
     { 
         printf ("Enter command: ");
-        fflush (stdin);
         fflush (stdout);
         fgets(in_Line, LINESIZE - 2, stdin);
         lineLen = strlen(in_Line);
