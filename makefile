@@ -51,7 +51,7 @@ clang-analyze:
 
 clang-tidy:
 	@echo "Running clang-tidy"
-	clang-tidy -checks=* $(SRC)/*.c -- -I$(INC)
+	clang-tidy -checks=* -header-filter=.* $(SRC)/*.c -- -I$(INC)
 
 clang-format:
 	@echo "Running clang-format"
