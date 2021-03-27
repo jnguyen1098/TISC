@@ -236,30 +236,29 @@ enum step_result stepTM(void)
     struct instruction curr_instruction = iMem[program_counter];
 
     switch (get_op_class[curr_instruction.iop]) { 
-        case opclRR :
-            /***********************************/
-            r = curr_instruction.iarg1 ;
-            s = curr_instruction.iarg2 ;
-            t = curr_instruction.iarg3 ;
+
+        case opclRR:
+            r = curr_instruction.iarg1;
+            s = curr_instruction.iarg2;
+            t = curr_instruction.iarg3;
             break;
 
-        case opclRM :
-            /***********************************/
-            r = curr_instruction.iarg1 ;
-            s = curr_instruction.iarg3 ;
-            m = curr_instruction.iarg2 + reg[s] ;
+        case opclRM:
+            r = curr_instruction.iarg1;
+            s = curr_instruction.iarg3;
+            m = curr_instruction.iarg2 + reg[s];
             if (m < 0 || m > DADDR_SIZE) {
                 return STEP_ILLEGAL_DATA_MEMORY_INDEX;
             }
             break;
 
-        case opclRA :
-            /***********************************/
-            r = curr_instruction.iarg1 ;
-            s = curr_instruction.iarg3 ;
-            m = curr_instruction.iarg2 + reg[s] ;
+        case opclRA:
+            r = curr_instruction.iarg1;
+            s = curr_instruction.iarg3;
+            m = curr_instruction.iarg2 + reg[s];
             break;
-    } /* case */
+
+    }
 
     switch ( curr_instruction.iop)
     { 
