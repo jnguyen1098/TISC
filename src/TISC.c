@@ -97,23 +97,22 @@ int getNum (void)
     return temp;
 }
 
-/********************************************/
-int getWord(void)
+int get_word(void)
 { 
-    int temp = false;
     int length = 0;
     if ((curr_char = get_next_non_blank_char()))
     { 
         while (isalnum(curr_char))
         { 
-            if (length < WORD_SIZE - 1) word [length++] =  curr_char;
+            if (length < WORD_SIZE - 1) {
+                word[length++] = curr_char;
+            }
             curr_char = get_next_char();
         }
         word[length] = '\0';
-        temp = (length != 0);
     }
-    return temp;
-} /* getWord */
+    return length;
+}
 
 bool get_next_char_after(char c)
 {
@@ -167,7 +166,7 @@ int readInstructions (FILE *pgm)
                 return error("Location too large",lineNo,loc);
             if (!get_next_char_after(':'))
                 return error("Missing colon", lineNo,loc);
-            if (! getWord ())
+            if (!get_word())
                 return error("Missing opcode", lineNo,loc);
             op = opHALT ;
             while ((op < opRALim)
@@ -336,7 +335,8 @@ int doCommand (void)
         buf_len = strlen(line_buf);
         inCol = 0;
     }
-    while (! getWord ());
+    while (!get_word())
+        ;
 
     cmd = word[0] ;
     switch ( cmd )

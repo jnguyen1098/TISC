@@ -64,4 +64,13 @@ bool error(char *msg, int line_no, int inst_no);
  */
 bool get_next_char_after(char c);
 
+/**
+ * Gets the next word from input buffer, which is defined as a
+ * space-delimited group of letters, greedily consumed.
+ * 
+ * @post    Input buffer will likely be consumed normally
+ *@ return  Length of the consumed word. 0 if nonexistence
+ */
+int get_word(void);
+
 #endif
