@@ -100,7 +100,7 @@ char pgmName[20];
 
 /** Current line buffer. */
 char line_buf[BUFSIZ];
-int lineLen ;
+int buf_len ;
 
 /** Not the current char, but a text column iterator for input. */
 int inCol; // TODO: refactor this out
@@ -140,7 +140,7 @@ void writeInstruction ( int loc )
 /********************************************/
 void getCh (void)
 { 
-    if (++inCol < lineLen)
+    if (++inCol < buf_len)
         curr_char = line_buf[inCol];
     else curr_char = ' ' ;
 } /* getCh */
@@ -148,10 +148,10 @@ void getCh (void)
 /********************************************/
 bool nonBlank (void)
 { 
-    while ((inCol < lineLen)
+    while ((inCol < buf_len)
             && (line_buf[inCol] == ' ') )
         inCol++ ;
-    if (inCol < lineLen)
+    if (inCol < buf_len)
     { 
         curr_char = line_buf[inCol] ;
         return true; }
@@ -259,9 +259,9 @@ int readInstructions (FILE *pgm)
     { 
         inCol = 0 ; 
         lineNo++;
-        lineLen = strlen(line_buf)-1 ;
-        if (line_buf[lineLen]=='\n') line_buf[lineLen] = '\0' ;
-        else line_buf[++lineLen] = '\0';
+        buf_len = strlen(line_buf)-1 ;
+        if (line_buf[buf_len]=='\n') line_buf[buf_len] = '\0' ;
+        else line_buf[++buf_len] = '\0';
         if ( (nonBlank()) && (line_buf[inCol] != '*') )
         { 
             if (! getNum())
@@ -381,7 +381,7 @@ STEPRESULT stepTM (void)
                 printf("Enter value for IN instruction: ") ;
                 fflush (stdout);
                 fgets(line_buf, BUFSIZ, stdin);
-                lineLen = strlen(line_buf) ;
+                buf_len = strlen(line_buf) ;
                 inCol = 0;
                 ok = getNum();
                 if ( ! ok ) printf ("Illegal value\n");
@@ -435,7 +435,7 @@ int doCommand (void)
         printf ("Enter command: ");
         fflush (stdout);
         fgets(line_buf, BUFSIZ, stdin);
-        lineLen = strlen(line_buf);
+        buf_len = strlen(line_buf);
         inCol = 0;
     }
     while (! getWord ());
