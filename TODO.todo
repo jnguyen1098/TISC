@@ -8,3 +8,6 @@ check if I didn't include all .h / .c in Doxyfile
 if reengineering: gcov, cunit
 docs/ folder?
 examples/ folder?
+use seethe for logging when reengineering?
+hi
+hii
