@@ -26,7 +26,7 @@ jobs:
         run: sudo apt install valgrind
 
       - name: Enable permissions for test script
-        run: chmod +x test.sh
+        run: chmod +x tests/run_tests.sh
 
       - name: Test project
         run: make test TESTARG="-v"
