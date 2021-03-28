@@ -490,19 +490,19 @@ int main(int argc, char *argv[])
 {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s filename\n", argv[0]);
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     FILE *program_text;
     if (!(program_text = fopen(argv[1], "r"))) {
         perror("TISC");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     /* read the program */
     if (!read_instructions(program_text)) {
         fprintf(stderr, "Could not read read %s. Exiting\n", argv[1]);
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     /* switch input file to terminal */
