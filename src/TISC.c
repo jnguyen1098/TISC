@@ -70,7 +70,6 @@ char get_next_non_blank_char(void)
 /********************************************/
 int get_num(void)
 { 
-    int term;
     bool temp = false;
     num = 0;
     do
@@ -82,7 +81,7 @@ int get_num(void)
             if (curr_char == '-')  sign = - sign ;
             curr_char = get_next_char();
         }
-        term = 0 ;
+        int term = 0;
         curr_char = get_next_non_blank_char();
         while (isdigit(curr_char))
         { 
