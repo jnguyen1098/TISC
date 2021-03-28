@@ -56,7 +56,7 @@ void write_instruction(int loc)
 
 char get_next_char(void)
 { 
-    return line_buf[++inCol] ? line_buf[inCol] : ' ';
+    return line_buf[++inCol] != '\0' ? line_buf[inCol] : ' ';
 }
 
 char get_next_non_blank_char(void)
@@ -64,7 +64,7 @@ char get_next_non_blank_char(void)
     // TODO: this function has to die in the global exodus
     while (line_buf[inCol] == ' ')
         inCol++;
-    return line_buf[inCol] ? line_buf[inCol] : '\0';
+    return line_buf[inCol];
 }
 
 /********************************************/
@@ -75,7 +75,7 @@ int get_num(void)
     do
     { 
         int sign = 1;
-        while ( (curr_char = get_next_non_blank_char()) && ((curr_char == '+') || (curr_char == '-')) )
+        while ( (curr_char = get_next_non_blank_char()) != '\0' && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
             if (curr_char == '-')  sign = - sign ;
@@ -86,11 +86,11 @@ int get_num(void)
         while (isdigit(curr_char))
         { 
             temp = true;
-            term = term * 10 + ( curr_char - '0' ) ;
+            term = term * 10 + (int)(curr_char - '0');
             curr_char = get_next_char();
         }
         num = num + (term * sign) ;
-    } while ( (curr_char = get_next_non_blank_char())  && ((curr_char == '+') || (curr_char == '-')) ) ;
+    } while ( (curr_char = get_next_non_blank_char()) != '\0'  && ((curr_char == '+') || (curr_char == '-')) ) ;
     return temp;
 }
 
