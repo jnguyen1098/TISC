@@ -131,7 +131,7 @@ bool error(char *msg, int line_no, int inst_no)
     return false;
 }
 
-int readInstructions (FILE *pgm)
+int read_instructions(FILE *pgm)
 { 
     enum op_code op;
     int arg1, arg2, arg3;
@@ -217,7 +217,7 @@ int readInstructions (FILE *pgm)
         }
     }
     return true;
-} /* readInstructions */
+}
 
 
 enum step_result step(void)
@@ -502,7 +502,8 @@ int main(int argc, char *argv[])
     }
 
     /* read the program */
-    if (!readInstructions(program_text)) {
+    if (!read_instructions(program_text)) {
+        fprintf(stderr, "Could not read read %s. Exiting\n", argv[1]);
         exit(1);
     }
 
