@@ -70,13 +70,12 @@ char get_next_non_blank_char(void)
 /********************************************/
 int get_num(void)
 { 
-    int sign;
     int term;
     bool temp = false;
     num = 0;
     do
     { 
-        sign = 1;
+        int sign = 1;
         while ( (curr_char = get_next_non_blank_char()) && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
