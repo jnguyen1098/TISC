@@ -10,12 +10,12 @@
 
 #include "TISC.h"
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <ctype.h>
 
-/** Temporary iterator for instruction memory. TODO: counter or actual instruction? */
+/** Temporary iterator for instruction memory. TODO(jason): counter or actual instruction? */
 int inst_itr = 0;
 
 /** Temporary iterator for data_memory when using `d` */
@@ -30,11 +30,11 @@ char line_buf[BUFSIZ];
 int buf_len;
 
 /** Not the current char, but a text column iterator for input. */
-int inCol; // TODO: refactor this out
+int inCol; // TODO(jason): refactor this out
 
 int num;
 char word[WORD_SIZE];
-char curr_char; // TODO: refactor this global variable
+char curr_char; // TODO(jason): refactor this global variable
 
 void write_instruction(int loc)
 { 
@@ -62,8 +62,9 @@ char get_next_char(void)
 char get_next_non_blank_char(void)
 { 
     // TODO: this function has to die in the global exodus
-    while (line_buf[inCol] == ' ')
+    while (line_buf[inCol] == ' ') {
         inCol++;
+    }
     return line_buf[inCol];
 }
 
@@ -78,7 +79,9 @@ int get_num(void)
         while ( (curr_char = get_next_non_blank_char()) != '\0' && ((curr_char == '+') || (curr_char == '-')) )
         { 
             temp = false;
-            if (curr_char == '-')  sign = - sign ;
+            if (curr_char == '-') {
+                sign = -sign;
+            }
             curr_char = get_next_char();
         }
         int term = 0;
