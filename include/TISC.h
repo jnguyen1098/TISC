@@ -15,9 +15,9 @@
 
 #include "TISC_defs.h"
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 // TODO(jason) document
 struct TISC {
@@ -49,7 +49,7 @@ struct TISC {
  * @return  the next non-blank charcter if it exists;
  *          '\0' otherwise.
  */
-char get_next_non_blank_char(struct TISC *tisc);
+static char get_next_non_blank_char(struct TISC *tisc);
 
 /**
  * Consumes the next character in the line buffer and returns
@@ -61,7 +61,7 @@ char get_next_non_blank_char(struct TISC *tisc);
  *
  * @return   The next character, or the ' ' space character.
  */
-char get_next_char(struct TISC *tisc);
+static char get_next_char(struct TISC *tisc);
 
 /**
  * Emits an error message and then returns false.
@@ -70,7 +70,7 @@ char get_next_char(struct TISC *tisc);
  * @param line_no   error line number
  * @param inst_no   error instruction number
  */
-bool error(char *msg, int line_no, int inst_no);
+static bool error(char *msg, int line_no, int inst_no);
 
 /**
  * Skips input until first char after, setting current char to that
@@ -81,7 +81,7 @@ bool error(char *msg, int line_no, int inst_no);
  *          input buffer, it returns false instead.
  * @post    input stream may be advanced forward
  */
-bool get_next_char_after(struct TISC *tisc, char c);
+static bool get_next_char_after(struct TISC *tisc, char c);
 
 /**
  * Gets the next word from input buffer, which is defined as a
@@ -90,15 +90,15 @@ bool get_next_char_after(struct TISC *tisc, char c);
  * @post    input buffer will likely be consumed normally
  * @return  length of the consumed word. 0 if nonexistence
  */
-int get_word(struct TISC *tisc);
+static int get_word(struct TISC *tisc);
 
 /**
  * Consumes a number from the input and returns it as an int
  *
  * @param tisc  the machine to get the number from
- * @return      an integer from the input buffer
+ * @return      whether the parsed object is truly a num
  */
-int get_num(struct TISC *tisc);
+static bool get_num(struct TISC *tisc);
 
 /**
  * Emits an assembly instruction based on the location in the .text
@@ -108,6 +108,6 @@ int get_num(struct TISC *tisc);
  * @param loc   location in the inst array of the opcode to write
  * @post        stdout has output emitted from TISC
  */
-void write_instruction(struct TISC *tisc, int loc);
+static void write_instruction(struct TISC *tisc, int loc);
 
 #endif

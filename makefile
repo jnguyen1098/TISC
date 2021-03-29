@@ -43,7 +43,7 @@ cppcheck:
 
 splint:
 	@echo "Running splint"
-	splint -I$(INC) $(SRC)/*.c
+	splint -I$(INC) $(SRC)/*.c +charint +matchanyintegral
 
 clang-analyze:
 	@echo "Running clang's static analyzer"

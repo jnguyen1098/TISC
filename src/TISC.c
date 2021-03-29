@@ -11,8 +11,8 @@
 #include "TISC.h"
 
 #include <ctype.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <string.h>
 
 void write_instruction(struct TISC *tisc, int loc)
@@ -40,7 +40,7 @@ char get_next_char(struct TISC *tisc)
 
 char get_next_non_blank_char(struct TISC *tisc)
 { 
-    // TODO: this function has to die in the global exodus
+    // TODO(jason): this function has to die in the global exodus
     while (tisc->line_buf[tisc->inCol] == ' ') {
         tisc->inCol++;
     }
@@ -48,15 +48,16 @@ char get_next_non_blank_char(struct TISC *tisc)
 }
 
 /********************************************/
-int get_num(struct TISC *tisc)
+bool get_num(struct TISC *tisc)
 { 
-    int is_num = false;
+    // TODO(jason) solve this int vs bool confusion
+    bool is_num = false;
     tisc->num = 0;
     do { 
         int sign = 1;
         while ( (tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' && ((tisc->curr_char == '+') || (tisc->curr_char == '-')) )
         { 
-            is_num = false;
+            is_num = true;
             if (tisc->curr_char == '-') {
                 sign = -sign;
             }
@@ -67,7 +68,7 @@ int get_num(struct TISC *tisc)
         while (isdigit(tisc->curr_char))
         { 
             is_num = true;
-            term = term * 10 + (int)(tisc->curr_char - '0');
+            term = term * 10 + (tisc->curr_char - '0');
             tisc->curr_char = get_next_char(tisc);
         }
         tisc->num = tisc->num + (term * sign) ;
@@ -78,7 +79,7 @@ int get_num(struct TISC *tisc)
 int get_word(struct TISC *tisc)
 { 
     int length = 0;
-    if ((tisc->curr_char = get_next_non_blank_char(tisc)))
+    if ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0')
     { 
         while (isalnum(tisc->curr_char))
         { 
@@ -94,7 +95,11 @@ int get_word(struct TISC *tisc)
 
 bool get_next_char_after(struct TISC *tisc, char c)
 {
-    if ((tisc->curr_char = get_next_non_blank_char(tisc)) && (tisc->curr_char == c) )
+    if (
+        (tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' 
+        && 
+        (tisc->curr_char == c)
+    )
     { 
         tisc->curr_char = get_next_char(tisc);
         return true;
@@ -105,22 +110,26 @@ bool get_next_char_after(struct TISC *tisc, char c)
 bool error(char *msg, int line_no, int inst_no)
 { 
     fprintf(stderr, "Line %d", line_no);
-    if (inst_no >= 0) fprintf(stderr, " (Instruction %d)", inst_no);
+    if (inst_no >= 0) {
+        fprintf(stderr, " (Instruction %d)", inst_no);
+    }
     fprintf(stderr, "   %s\n", msg);
     return false;
 }
 
-int read_instructions(struct TISC *tisc, FILE *pgm)
+static bool read_instructions(struct TISC *tisc, FILE *pgm)
 { 
     enum op_code op;
     int arg1, arg2, arg3;
     int loc, regNo, lineNo;
-    for (regNo = 0 ; regNo < NO_REGS ; regNo++)
+    for (regNo = 0 ; regNo < NO_REGS ; regNo++) {
         tisc->reg[regNo] = 0 ;
+    }
     tisc->data_memory[0] = DADDR_SIZE - 1 ;
-    for (loc = 1 ; loc < DADDR_SIZE ; loc++)
-        tisc->data_memory[loc] = 0 ;
-    for (loc = 0 ; loc < IADDR_SIZE ; loc++)
+    for (loc = 1; loc < DADDR_SIZE; loc++) {
+        tisc->data_memory[loc] = 0;
+    }
+    for (loc = 0; loc < IADDR_SIZE; loc++)
     { 
         tisc->instruction_memory[loc].iop = opHALT ;
         tisc->instruction_memory[loc].iarg1 = 0 ;
@@ -128,62 +137,82 @@ int read_instructions(struct TISC *tisc, FILE *pgm)
         tisc->instruction_memory[loc].iarg3 = 0 ;
     }
     lineNo = 0 ;
-    while (fgets(tisc->line_buf, BUFSIZ, pgm))
+    while (fgets(tisc->line_buf, (size_t)BUFSIZ, pgm))
     { 
         tisc->inCol = 0 ; 
         lineNo++;
         tisc->line_buf[strcspn(tisc->line_buf, "\r\n")] = '\0';
-        if ( (tisc->curr_char = get_next_non_blank_char(tisc)) && (tisc->line_buf[tisc->inCol] != '*') )
+        if (
+            (tisc->curr_char = get_next_non_blank_char(tisc)) != '\0'
+                &&
+            (tisc->line_buf[tisc->inCol] != '*') 
+        )
         { 
-            if (!get_num(tisc))
-                return error("Bad location", lineNo,-1);
+            if (!get_num(tisc)) {
+                return error("Bad location", lineNo, -1);
+            }
             loc = tisc->num;
-            if (loc > IADDR_SIZE)
+            if (loc > IADDR_SIZE) {
                 return error("Location too large",lineNo,loc);
-            if (!get_next_char_after(tisc, ':'))
+            }
+            if (!get_next_char_after(tisc, ':')) {
                 return error("Missing colon", lineNo,loc);
-            if (!get_word(tisc))
+            }
+            if (get_word(tisc) == 0) {
                 return error("Missing opcode", lineNo,loc);
-            op = opHALT ;
-            while ((op < opRALim)
-                    && (strncmp(opCodeTab[op], tisc->word, 4) != 0) )
-                op++ ;
-            if (strncmp(opCodeTab[op], tisc->word, 4) != 0)
+            }
+            op = opHALT;
+            while ((op < opRALim) && (strncmp(opCodeTab[op], tisc->word, 4) != 0)) {
+                op++;
+            }
+            if (strncmp(opCodeTab[op], tisc->word, 4) != 0) {
                 return error("Illegal opcode", lineNo,loc);
+            }
+
             switch (get_op_class[op])
             { 
                 case opclRR :
                     /***********************************/
-                    if ( (!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS) )
+                    if ((!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS)) {
                         return error("Bad first register", lineNo,loc);
+                    }
                     arg1 = tisc->num;
-                    if ( !get_next_char_after(tisc, ','))
+                    if (!get_next_char_after(tisc, ',')) {
                         return error("Missing comma", lineNo, loc);
-                    if ( (!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS) )
+                    }
+                    if ((!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS)) {
                         return error("Bad second register", lineNo, loc);
+                    }
                     arg2 = tisc->num;
-                    if ( !get_next_char_after(tisc, ',')) 
+                    if (!get_next_char_after(tisc, ',')) {
                         return error("Missing comma", lineNo,loc);
-                    if ( (!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS) )
+                    }
+                    if ((!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS)) {
                         return error("Bad third register", lineNo,loc);
+                    }
                     arg3 = tisc->num;
                     break;
 
                 case opclRM :
                 case opclRA :
                     /***********************************/
-                    if ( (!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS) )
+                    if ((!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS)) {
                         return error("Bad first register", lineNo,loc);
+                    }
                     arg1 = tisc->num;
-                    if ( !get_next_char_after(tisc, ','))
+                    if (!get_next_char_after(tisc, ',')) {
                         return error("Missing comma", lineNo,loc);
-                    if (!get_num(tisc))
+                    }
+                    if (!get_num(tisc)) {
                         return error("Bad displacement", lineNo,loc);
+                    }
                     arg2 = tisc->num;
-                    if ( !get_next_char_after(tisc, '(') && !get_next_char_after(tisc, ',') )
+                    if (!get_next_char_after(tisc, '(') && !get_next_char_after(tisc, ',') ) {
                         return error("Missing LParen", lineNo,loc);
-                    if ( (!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS))
+                    }
+                    if ((!get_num(tisc)) || (tisc->num < 0) || (tisc->num >= NO_REGS)) {
                         return error("Bad second register", lineNo,loc);
+                    }
                     arg3 = tisc->num;
                     break;
             }
@@ -197,16 +226,23 @@ int read_instructions(struct TISC *tisc, FILE *pgm)
 }
 
 
-enum step_result step(struct TISC *tisc)
+static enum step_result step(struct TISC *tisc)
 { 
-    int r, s, t, m;
-    int ok;
+    int r = 0, s = 0, t = 0, m = 0;
+    bool ok;
 
     int program_counter = tisc->reg[PC_REG];
 
-    if (program_counter < 0 || program_counter > IADDR_SIZE) {
+    if (program_counter < 0) {
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
+
+#if 0
+    // Don't think this is needed
+    if (program_counter > IADDR_SIZE) {
+        return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
+    }
+#endif
 
     tisc->reg[PC_REG]++;
     struct instruction curr_instruction = tisc->instruction_memory[program_counter];
@@ -250,42 +286,102 @@ enum step_result step(struct TISC *tisc)
             do
             { 
                 printf("Enter value for IN instruction: ") ;
-                fflush (stdout);
-                fgets(tisc->line_buf, BUFSIZ, stdin);
+                if (fflush(stdout) != 0) {
+                    perror("fflush");
+                    exit(EXIT_FAILURE);
+                }
+                if (fgets(tisc->line_buf, (size_t)BUFSIZ, stdin) == NULL) {
+                    perror("fgets");
+                    exit(EXIT_FAILURE);
+                }
                 tisc->inCol = 0;
                 ok = get_num(tisc);
-                if ( ! ok ) fprintf(stderr, "Illegal value\n");
-                else tisc->reg[r] = tisc->num;
+                if (!ok) {
+                    fprintf(stderr, "Illegal value\n");
+                } else {
+                    tisc->reg[r] = tisc->num;
+                }
             }
             while (! ok);
             break;
 
-        case opOUT :  
-            printf ("OUT instruction prints: %d\n", tisc->reg[r] ) ;
+        case opOUT:
+            printf("OUT instruction prints: %d\n", tisc->reg[r]);
             break;
-        case opADD :  tisc->reg[r] = tisc->reg[s] + tisc->reg[t] ;  break;
-        case opSUB :  tisc->reg[r] = tisc->reg[s] - tisc->reg[t] ;  break;
-        case opMUL :  tisc->reg[r] = tisc->reg[s] * tisc->reg[t] ;  break;
 
-        case opDIV :
-                      /***********************************/
-                      if ( tisc->reg[t] != 0 ) tisc->reg[r] = tisc->reg[s] / tisc->reg[t];
-                      else return srZERODIVIDE ;
-                      break;
+        case opADD:
+            tisc->reg[r] = tisc->reg[s] + tisc->reg[t];
+            break;
+
+        case opSUB:
+            tisc->reg[r] = tisc->reg[s] - tisc->reg[t];
+            break;
+
+        case opMUL:
+            tisc->reg[r] = tisc->reg[s] * tisc->reg[t];
+            break;
+
+        case opDIV:
+            if (tisc->reg[t] != 0) {
+                tisc->reg[r] = tisc->reg[s] / tisc->reg[t];
+            } else {
+                return srZERODIVIDE;
+            }
+            break;
 
                       /*************** RM instructions ********************/
-        case opLD :    tisc->reg[r] = tisc->data_memory[m] ;  break;
-        case opST :    tisc->data_memory[m] = tisc->reg[r] ;  break;
+        case opLD:
+            tisc->reg[r] = tisc->data_memory[m];
+            break;
+
+        case opST:
+            tisc->data_memory[m] = tisc->reg[r];
+            break;
 
                        /*************** RA instructions ********************/
-        case opLDA :    tisc->reg[r] = m ; break;
-        case opLDC :    tisc->reg[r] = curr_instruction.iarg2 ;   break;
-        case opJLT :    if ( tisc->reg[r] <  0 ) tisc->reg[PC_REG] = m ; break;
-        case opJLE :    if ( tisc->reg[r] <=  0 ) tisc->reg[PC_REG] = m ; break;
-        case opJGT :    if ( tisc->reg[r] >  0 ) tisc->reg[PC_REG] = m ; break;
-        case opJGE :    if ( tisc->reg[r] >=  0 ) tisc->reg[PC_REG] = m ; break;
-        case opJEQ :    if ( tisc->reg[r] == 0 ) tisc->reg[PC_REG] = m ; break;
-        case opJNE :    if ( tisc->reg[r] != 0 ) tisc->reg[PC_REG] = m ; break;
+        case opLDA:
+            tisc->reg[r] = m;
+            break;
+
+        case opLDC:
+            tisc->reg[r] = curr_instruction.iarg2;
+            break;
+
+        case opJLT:
+            if (tisc->reg[r] < 0) {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
+
+        case opJLE:
+            if (tisc->reg[r] <= 0)  {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
+
+        case opJGT:
+            if (tisc->reg[r] > 0) {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
+
+        case opJGE:
+            if (tisc->reg[r] >= 0) {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
+
+        case opJEQ:
+            if (tisc->reg[r] == 0) {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
+
+        case opJNE:
+            if (tisc->reg[r] != 0) {
+                tisc->reg[PC_REG] = m;
+            }
+            break;
 
                             /* end of legal instructions */
     }
@@ -293,10 +389,10 @@ enum step_result step(struct TISC *tisc)
 }
 
 /********************************************/
-int doCommand (struct TISC *tisc)
+static bool doCommand(struct TISC *tisc)
 { 
-    static int traceflag = false;
-    static int icountflag = false;
+    static bool traceflag = false;
+    static bool icountflag = false;
     char cmd;
     int stepcnt=0, i;
     int printcnt;
@@ -305,11 +401,20 @@ int doCommand (struct TISC *tisc)
     do
     { 
         printf ("Enter command: ");
-        fflush (stdout);
-        fgets(tisc->line_buf, BUFSIZ, stdin);
+        if (fflush(stdout) != 0) {
+            perror("fflush");
+            exit(EXIT_FAILURE);
+        }
+
+        if (fgets(tisc->line_buf, (size_t)BUFSIZ, stdin) == NULL) {
+            perror("fgets");
+            exit(EXIT_FAILURE);
+        }
+
         tisc->inCol = 0;
     }
-    while (!get_word(tisc))
+
+    while (get_word(tisc) == 0)
         ;
 
     cmd = tisc->word[0];
@@ -319,7 +424,11 @@ int doCommand (struct TISC *tisc)
             /***********************************/
             traceflag = ! traceflag ;
             printf("Tracing now ");
-            if ( traceflag ) printf("on.\n"); else printf("off.\n");
+            if (traceflag) {
+                printf("on.\n");
+            } else {
+                printf("off.\n");
+            }
             break;
 
         case 'h' :
@@ -332,7 +441,7 @@ int doCommand (struct TISC *tisc)
             printf("   r(egs          "\
                     "Print the contents of the registers\n");
             printf("   i(Mem <b <n>>  "\
-                        "Print n iMem locations starting at b\n"); // TODO: change iMem
+                        "Print n iMem locations starting at b\n"); // TODO(jason): change iMem
             printf("   d(Mem <b <n>>  "\
                     "Print n data memory locations starting at b\n");
             printf("   t(race         "\
@@ -352,13 +461,19 @@ int doCommand (struct TISC *tisc)
             /***********************************/
             icountflag = ! icountflag ;
             printf("Printing instruction count now ");
-            if ( icountflag ) printf("on.\n"); else printf("off.\n");
+            if (icountflag) {
+                printf("on.\n");
+            } else {
+                printf("off.\n");
+            }
             break;
 
         case 's' :
             /***********************************/
             stepcnt = 1;
-            if (get_num(tisc))  stepcnt = abs(tisc->num);
+            if (get_num(tisc)) {
+                stepcnt = abs(tisc->num);
+            }
             break;
 
         case 'g' :   stepcnt = 1 ;     break;
@@ -368,7 +483,9 @@ int doCommand (struct TISC *tisc)
                      for (i = 0; i < NO_REGS; i++)
                      { 
                          printf("%1d: %4d    ", i, tisc->reg[i]);
-                         if ( (i % 4) == 3 ) printf ("\n");
+                         if (i % 4 == 3) {
+                             printf("\n");
+                         }
                      }
                      break;
 
@@ -378,10 +495,13 @@ int doCommand (struct TISC *tisc)
                      if (get_num(tisc))
                      { 
                          tisc->inst_itr = tisc->num;
-                         if (get_num(tisc)) printcnt = tisc->num;
+                         if (get_num(tisc)) {
+                             printcnt = tisc->num;
+                         }
                      }
-                     if (!(tisc->curr_char = get_next_non_blank_char(tisc)))
+                     if ((tisc->curr_char = get_next_non_blank_char(tisc)) == '\0') {
                          printf ("Instruction locations?\n");
+                     }
                      else
                      { 
                          while ((tisc->inst_itr >= 0) && (tisc->inst_itr < IADDR_SIZE)
@@ -400,10 +520,13 @@ int doCommand (struct TISC *tisc)
                      if (get_num(tisc))
                      { 
                          tisc->data_itr = tisc->num;
-                         if (get_num(tisc)) printcnt = tisc->num;
+                         if (get_num(tisc)) {
+                             printcnt = tisc->num;
+                         }
                      }
-                     if (!(tisc->curr_char = get_next_non_blank_char(tisc)))
+                     if ((tisc->curr_char = get_next_non_blank_char(tisc)) == '\0') {
                          printf("Data locations?\n");
+                     }
                      else
                      { 
                          while ((tisc->data_itr >= 0) && (tisc->data_itr < DADDR_SIZE)
@@ -421,11 +544,13 @@ int doCommand (struct TISC *tisc)
                      tisc->inst_itr = 0;
                      tisc->data_itr = 0;
                      stepcnt = 0;
-                     for (regNo = 0;  regNo < NO_REGS; regNo++)
+                     for (regNo = 0;  regNo < NO_REGS; regNo++) {
                          tisc->reg[regNo] = 0;
+                     }
                      tisc->data_memory[0] = DADDR_SIZE - 1;
-                     for (loc = 1 ; loc < DADDR_SIZE; loc++)
-                         tisc->data_memory[loc] = 0 ;
+                     for (loc = 1 ; loc < DADDR_SIZE; loc++) {
+                         tisc->data_memory[loc] = 0;
+                     }
                      break;
 
         case 'q' : return false;  /* break; */
@@ -441,24 +566,32 @@ int doCommand (struct TISC *tisc)
             while (stepResult == srOKAY)
             { 
                 tisc->inst_itr = tisc->reg[PC_REG] ;
-                if (traceflag) write_instruction(tisc, tisc->inst_itr) ;
+                if (traceflag) {
+                    write_instruction(tisc, tisc->inst_itr);
+                }
                 stepResult = step(tisc);
                 stepcnt++;
             }
-            if ( icountflag )
+            if (icountflag) {
                 printf("Number of instructions executed = %d\n",stepcnt);
+            }
         }
         else
         {
             while ((stepcnt > 0) && (stepResult == srOKAY))
             {
                 tisc->inst_itr = tisc->reg[PC_REG] ;
-                if (traceflag) write_instruction(tisc, tisc->inst_itr) ;
+                if (traceflag) {
+                    write_instruction(tisc, tisc->inst_itr);
+                }
                 stepResult = step(tisc);
                 stepcnt--;
             }
         }
-        puts(stepResultTab[stepResult]);
+        if (puts(stepResultTab[stepResult]) == EOF) {
+            perror("puts");
+            exit(EXIT_FAILURE);
+        }
     }
     return true;
 } /* doCommand */
@@ -470,11 +603,11 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    struct TISC tisc = { 0 };
+    struct TISC tisc;
     memset(&tisc, 0, sizeof(struct TISC));
 
     FILE *program_text;
-    if (!(program_text = fopen(argv[1], "r"))) {
+    if (!(program_text = fopen(argv[1], "re"))) {
         perror("TISC");
         exit(EXIT_FAILURE);
     }
@@ -490,11 +623,16 @@ int main(int argc, char *argv[])
     /* read-eval-print */
     printf("TM  simulation (enter h for help)...\n");
 
-    while (doCommand(&tisc))
+    while (doCommand(&tisc)) {
         ;
+    }
 
     printf("Simulation done.\n");
 
-    fclose(program_text);
+    if (fclose(program_text) != 0) {
+        perror("fclose");
+        exit(EXIT_FAILURE);
+    }
+
     return 0;
 }
