@@ -29,7 +29,6 @@ struct TISC {
     int reg[NO_REGS];
 
     char line_buf[BUFSIZ];
-    int buf_len;
     int inCol;
     char curr_char;
 

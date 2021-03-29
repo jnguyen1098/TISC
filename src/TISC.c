@@ -133,9 +133,7 @@ int read_instructions(struct TISC *tisc, FILE *pgm)
     { 
         tisc->inCol = 0 ; 
         lineNo++;
-        tisc->buf_len = strlen(tisc->line_buf) - 1;
-        if (tisc->line_buf[tisc->buf_len]=='\n') tisc->line_buf[tisc->buf_len] = '\0';
-        else tisc->line_buf[++tisc->buf_len] = '\0';
+        tisc->line_buf[strcspn(tisc->line_buf, "\r\n")] = '\0';
         if ( (tisc->curr_char = get_next_non_blank_char(tisc)) && (tisc->line_buf[tisc->inCol] != '*') )
         { 
             if (!get_num(tisc))
@@ -255,7 +253,6 @@ enum step_result step(struct TISC *tisc)
                 printf("Enter value for IN instruction: ") ;
                 fflush (stdout);
                 fgets(tisc->line_buf, BUFSIZ, stdin);
-                tisc->buf_len = strlen(tisc->line_buf);
                 tisc->inCol = 0;
                 ok = get_num(tisc);
                 if ( ! ok ) fprintf(stderr, "Illegal value\n");
@@ -311,7 +308,6 @@ int doCommand (struct TISC *tisc)
         printf ("Enter command: ");
         fflush (stdout);
         fgets(tisc->line_buf, BUFSIZ, stdin);
-        tisc->buf_len = strlen(tisc->line_buf);
         tisc->inCol = 0;
     }
     while (!get_word(tisc))
