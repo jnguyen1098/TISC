@@ -33,6 +33,7 @@ struct TISC {
     char curr_char;
 
     char word[WORD_SIZE];
+    char padding[3];
     int num;
 };
 

@@ -1,8 +1,7 @@
 # TISC
 
 CC = clang
-CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3 -I$(INC)\
-# -Weverything
+CFLAGS = -Wall -Wpedantic -std=c99 -Wextra -ggdb3 -I$(INC) -Weverything
 VFLAGS = --show-leak-kinds=all --track-origins=yes --leak-check=full
 SHELL = /bin/bash
 

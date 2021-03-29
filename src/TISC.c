@@ -383,7 +383,11 @@ static enum step_result step(struct TISC *tisc)
             }
             break;
 
-                            /* end of legal instructions */
+        case opRRLim:
+        case opRMLim:
+        case opRALim:
+            fprintf(stderr, "Placeholder/limit instructions used. Aborting\n");
+            exit(EXIT_FAILURE);
     }
     return srOKAY ;
 }
@@ -396,7 +400,7 @@ static bool doCommand(struct TISC *tisc)
     char cmd;
     int stepcnt=0, i;
     int printcnt;
-    int stepResult;
+    enum step_result stepResult;
     int regNo, loc;
     do
     { 

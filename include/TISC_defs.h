@@ -73,7 +73,7 @@ enum op_code {
 /**
  * Enum that represents an opcode's given class.
  */
-const enum op_class {
+static const enum op_class {
     opclRR,     /**< Register-Register operations (r, s, t)     */
     opclRM,     /**< Register-Memory operations (r) v. (d, s)   */
     opclRA,     /**< Register-Address operations (r). (d, s)    */
@@ -122,13 +122,13 @@ enum step_result {
  * Instruction struct
  */
 struct instruction {
-    int iop;        /**< TODO: is this input/output processor? */
-    int iarg1;      /**< TODO: input argument 1? */
-    int iarg2;      /**< TODO: input argument 2? */
-    int iarg3;      /**< TODO: input argument 3? */
+    enum op_code iop;   /**< TODO: is this input/output processor? */
+    int iarg1;          /**< TODO: input argument 1? */
+    int iarg2;          /**< TODO: input argument 2? */
+    int iarg3;          /**< TODO: input argument 3? */
 };
 
-const char *opCodeTab[] = {
+static const char *opCodeTab[] = {
     /* RR opcodes */
     "HALT", "IN", "OUT", "ADD", "SUB", "MUL", "DIV", "<unknown RR>",
 
@@ -139,7 +139,7 @@ const char *opCodeTab[] = {
     "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "<unknown RA>",
 };
 
-const char *stepResultTab[] = {
+static const char *stepResultTab[] = {
     "OK",
     "Halted",
     "Instruction Memory Fault",
