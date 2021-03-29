@@ -17,56 +17,54 @@
 #include <stdlib.h>
 
 /** Instruction address array size */
-#define IADDR_SIZE  1024
+#define IADDR_SIZE 1024
 
 /** Data memory array size */
-#define DADDR_SIZE  1024
+#define DADDR_SIZE 1024
 
 /** Number of registers */
-#define NO_REGS     8
+#define NO_REGS 8
 
 /** Program counter register */
-#define PC_REG      (NO_REGS - 1)
+#define PC_REG (NO_REGS - 1)
 
 /** Size of an instruction word */
-#define WORD_SIZE   20
+#define WORD_SIZE 20
 
 enum op_code {
 
-        // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
-    opHALT,     /**< Halt                                       */
+    // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
+    opHALT, /**< Halt */
 
-    opIN,       /**< Read into reg(r)                           */
-    opOUT,      /**< Write from reg(r)                          */
+    opIN,  /**< Read into reg(r)  */
+    opOUT, /**< Write from reg(r) */
 
-    opADD,      /**< reg(r) = reg(s) + reg(t)                   */
-    opSUB,      /**< reg(r) = reg(s) - reg(t)                   */
-    opMUL,      /**< reg(r) = reg(s) * reg(t)                   */
-    opDIV,      /**< reg(r) = reg(s) / reg(t)                   */
+    opADD, /**< reg(r) = reg(s) + reg(t) */
+    opSUB, /**< reg(r) = reg(s) - reg(t) */
+    opMUL, /**< reg(r) = reg(s) * reg(t) */
+    opDIV, /**< reg(r) = reg(s) / reg(t) */
 
-    opRRLim,    /**< RR opcode limit                            */
+    opRRLim, /**< RR opcode limit */
 
+    // REGISTER-TO-MEMORY (RM) INSTRUCTIONS
+    opLD, /**< reg(r) = mem(d + reg(s)) */
+    opST, /**< mem(d + reg(s)) = reg(r) */
 
-        // REGISTER-TO-MEMORY (RM) INSTRUCTIONS
-    opLD,       /**< reg(r) = mem(d + reg(s))                   */
-    opST,       /**< mem(d + reg(s)) = reg(r)                   */
+    opRMLim, /**< RM opcode limit */
 
-    opRMLim,    /**< RM opcode limit                            */
+    // REGISTER-TO-ADDRESS (RA) INSTRUCTIONS
+    opLDA, /**< reg(r) = d + reg(s) */
+    opLDC, /**< reg(r) = d          */
 
+    opJLT, /**< if reg(r) <  0 then reg(7) = d + reg(s) */
+    opJLE, /**< if reg(r) <= 0 then reg(7) = d + reg(s) */
+    opJGT, /**< if reg(r) >  0 then reg(7) = d + reg(s) */
+    opJGE, /**< if reg(r) >= 0 then reg(7) = d + reg(s) */
 
-        // REGISTER-TO-ADDRESS (RA) INSTRUCTIONS
-    opLDA,      /**< reg(r) = d + reg(s)                        */
-    opLDC,      /**< reg(r) = d                                 */
+    opJEQ, /**< if reg(r) == 0 then reg(7) = d + reg(s) */
+    opJNE, /**< if reg(r) != 0 then reg(7) = d + reg(s) */
 
-    opJLT,      /**< if reg(r) <  0 then reg(7) = d + reg(s)    */
-    opJLE,      /**< if reg(r) <= 0 then reg(7) = d + reg(s)    */
-    opJGT,      /**< if reg(r) >  0 then reg(7) = d + reg(s)    */
-    opJGE,      /**< if reg(r) >= 0 then reg(7) = d + reg(s)    */
-
-    opJEQ,      /**< if reg(r) == 0 then reg(7) = d + reg(s)    */
-    opJNE,      /**< if reg(r) != 0 then reg(7) = d + reg(s)    */
-
-    opRALim,    /**< RA opcode limit                            */
+    opRALim, /**< RA opcode limit                            */
 
 };
 
@@ -123,20 +121,37 @@ enum step_result {
  */
 struct instruction {
     enum op_code iop;   /**< TODO: is this input/output processor? */
-    int iarg1;          /**< TODO: input argument 1? */
-    int iarg2;          /**< TODO: input argument 2? */
-    int iarg3;          /**< TODO: input argument 3? */
+    int          iarg1; /**< TODO: input argument 1? */
+    int          iarg2; /**< TODO: input argument 2? */
+    int          iarg3; /**< TODO: input argument 3? */
 };
 
 static const char *opCodeTab[] = {
     /* RR opcodes */
-    "HALT", "IN", "OUT", "ADD", "SUB", "MUL", "DIV", "<unknown RR>",
+    "HALT",
+    "IN",
+    "OUT",
+    "ADD",
+    "SUB",
+    "MUL",
+    "DIV",
+    "<unknown RR>",
 
     /* RM opcodes */
-    "LD", "ST", "<unknown RM>",
+    "LD",
+    "ST",
+    "<unknown RM>",
 
     /* RA opcodes */
-    "LDA", "LDC", "JLT", "JLE", "JGT", "JGE", "JEQ", "JNE", "<unknown RA>",
+    "LDA",
+    "LDC",
+    "JLT",
+    "JLE",
+    "JGT",
+    "JGE",
+    "JEQ",
+    "JNE",
+    "<unknown RA>",
 };
 
 static const char *stepResultTab[] = {

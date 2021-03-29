@@ -25,16 +25,16 @@ struct TISC {
     int data_itr;
 
     struct instruction instruction_memory[IADDR_SIZE];
-    int data_memory[DADDR_SIZE];
-    int reg[NO_REGS];
+    int                data_memory[DADDR_SIZE];
+    int                reg[NO_REGS];
 
     char line_buf[BUFSIZ];
-    int inCol;
+    int  inCol;
     char curr_char;
 
     char word[WORD_SIZE];
     char padding[3];
-    int num;
+    int  num;
 };
 
 // pre post param return see
@@ -87,7 +87,7 @@ static bool get_next_char_after(struct TISC *tisc, char c);
 /**
  * Gets the next word from input buffer, which is defined as a
  * space-delimited group of letters, greedily consumed.
- * 
+ *
  * @post    input buffer will likely be consumed normally
  * @return  length of the consumed word. 0 if nonexistence
  */
