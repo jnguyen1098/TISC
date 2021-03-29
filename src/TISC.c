@@ -51,8 +51,9 @@ char get_next_non_blank_char(struct TISC *tisc)
 bool get_num(struct TISC *tisc)
 {
     // TODO(jason) solve this int vs bool confusion
-    bool is_num = false;
-    tisc->num   = 0;
+    const int TEN    = 10;
+    bool      is_num = false;
+    tisc->num        = 0;
     do {
         int sign = 1;
         while ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' &&
@@ -67,7 +68,7 @@ bool get_num(struct TISC *tisc)
         tisc->curr_char = get_next_non_blank_char(tisc);
         while (isdigit(tisc->curr_char)) {
             is_num          = true;
-            term            = term * 10 + (tisc->curr_char - '0');
+            term            = term * TEN + (tisc->curr_char - '0');
             tisc->curr_char = get_next_char(tisc);
         }
         tisc->num = tisc->num + (term * sign);
@@ -113,9 +114,12 @@ bool error(char *msg, int line_no, int inst_no)
 
 static bool read_instructions(struct TISC *tisc, FILE *pgm)
 {
-    enum op_code op;
-    int          arg1, arg2, arg3;
-    int          loc, regNo, lineNo;
+    int arg1   = 0;
+    int arg2   = 0;
+    int arg3   = 0;
+    int loc    = 0;
+    int regNo  = 0;
+    int lineNo = 0;
     for (regNo = 0; regNo < NO_REGS; regNo++) {
         tisc->reg[regNo] = 0;
     }
@@ -149,7 +153,7 @@ static bool read_instructions(struct TISC *tisc, FILE *pgm)
             if (get_word(tisc) == 0) {
                 return error("Missing opcode", lineNo, loc);
             }
-            op = opHALT;
+            enum op_code op = opHALT;
             while ((op < opRALim) &&
                    (strncmp(opCodeTab[op], tisc->word, 4) != 0)) {
                 op++;
@@ -587,8 +591,8 @@ int main(int argc, char *argv[])
     struct TISC tisc;
     memset(&tisc, 0, sizeof(struct TISC));
 
-    FILE *program_text;
-    if (!(program_text = fopen(argv[1], "re"))) {
+    FILE *program_text = fopen(argv[1], "re");
+    if (program_text == NULL) {
         perror("TISC");
         exit(EXIT_FAILURE);
     }
@@ -605,7 +609,6 @@ int main(int argc, char *argv[])
     printf("TM  simulation (enter h for help)...\n");
 
     while (doCommand(&tisc)) {
-        ;
     }
 
     printf("Simulation done.\n");
