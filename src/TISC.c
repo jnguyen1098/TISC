@@ -50,14 +50,13 @@ char get_next_non_blank_char(struct TISC *tisc)
 /********************************************/
 int get_num(struct TISC *tisc)
 { 
-    bool temp = false;
+    int is_num = false;
     tisc->num = 0;
-    do
-    { 
+    do { 
         int sign = 1;
         while ( (tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' && ((tisc->curr_char == '+') || (tisc->curr_char == '-')) )
         { 
-            temp = false;
+            is_num = false;
             if (tisc->curr_char == '-') {
                 sign = -sign;
             }
@@ -67,13 +66,13 @@ int get_num(struct TISC *tisc)
         tisc->curr_char = get_next_non_blank_char(tisc);
         while (isdigit(tisc->curr_char))
         { 
-            temp = true;
+            is_num = true;
             term = term * 10 + (int)(tisc->curr_char - '0');
             tisc->curr_char = get_next_char(tisc);
         }
         tisc->num = tisc->num + (term * sign) ;
     } while ( (tisc->curr_char = get_next_non_blank_char(tisc)) != '\0'  && ((tisc->curr_char == '+') || (tisc->curr_char == '-')) ) ;
-    return temp;
+    return is_num;
 }
 
 int get_word(struct TISC *tisc)
