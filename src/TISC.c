@@ -589,7 +589,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    struct TISC tisc = TISC_DEFAULT;
+    struct TISC tisc = TISC_INIT;
 
     FILE *program_text = fopen(argv[1], "re");
     if (program_text == NULL) {
