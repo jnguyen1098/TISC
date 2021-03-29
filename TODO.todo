@@ -1,4 +1,3 @@
--Weverything when doing all linting
 separate constants/enums from function defs?
 test for bad paths
 use FILE *out instead of defaulting to stdout
