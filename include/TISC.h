@@ -15,7 +15,27 @@
 
 #include "TISC_defs.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+
+// TODO(jason) document
+struct TISC {
+    int inst_itr;
+    int data_itr;
+
+    struct instruction instruction_memory[IADDR_SIZE];
+    int data_memory[DADDR_SIZE];
+    int reg[NO_REGS];
+
+    char line_buf[BUFSIZ];
+    int buf_len;
+    int inCol;
+    char curr_char;
+
+    char word[WORD_SIZE];
+    int num;
+};
 
 // pre post param return see
 
@@ -30,7 +50,7 @@
  * @return  the next non-blank charcter if it exists;
  *          '\0' otherwise.
  */
-char get_next_non_blank_char(void);
+char get_next_non_blank_char(struct TISC *tisc);
 
 /**
  * Consumes the next character in the line buffer and returns
@@ -42,7 +62,7 @@ char get_next_non_blank_char(void);
  *
  * @return   The next character, or the ' ' space character.
  */
-char get_next_char(void);
+char get_next_char(struct TISC *tisc);
 
 /**
  * Emits an error message and then returns false.
@@ -62,7 +82,7 @@ bool error(char *msg, int line_no, int inst_no);
  *          input buffer, it returns false instead.
  * @post    input stream may be advanced forward
  */
-bool get_next_char_after(char c);
+bool get_next_char_after(struct TISC *tisc, char c);
 
 /**
  * Gets the next word from input buffer, which is defined as a
@@ -71,22 +91,24 @@ bool get_next_char_after(char c);
  * @post    input buffer will likely be consumed normally
  * @return  length of the consumed word. 0 if nonexistence
  */
-int get_word(void);
+int get_word(struct TISC *tisc);
 
 /**
  * Consumes a number from the input and returns it as an int
  *
- * @return  an integer from the input buffer
+ * @param tisc  the machine to get the number from
+ * @return      an integer from the input buffer
  */
-int get_num(void);
+int get_num(struct TISC *tisc);
 
 /**
  * Emits an assembly instruction based on the location in the .text
  *
  * @pre         loc is a valid, accessible index for the inst array
+ * @param tisc  TISC computer to read the data from
  * @param loc   location in the inst array of the opcode to write
  * @post        stdout has output emitted from TISC
  */
-void write_instruction(int loc);
+void write_instruction(struct TISC *tisc, int loc);
 
 #endif
