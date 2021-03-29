@@ -1,0 +1,84 @@
+[1mdiff --git a/include/TISC.h b/include/TISC.h[m
+[1mindex 99ff582..d57b0e7 100644[m
+[1m--- a/include/TISC.h[m
+[1m+++ b/include/TISC.h[m
+[36m@@ -19,19 +19,12 @@[m
+ #include <stdio.h>[m
+ #include <stdlib.h>[m
+ [m
+[31m-#define TISC_DEFAULT {           \[m
+[31m-    .inst_itr           =   0,   \[m
+[31m-    .data_itr           =   0,   \[m
+[31m-    .instruction_memory = {{0}}, \[m
+[31m-    .data_memory        = { 0 }, \[m
+[31m-    .reg                = { 0 }, \[m
+[31m-    .line_buf           = { 0 }, \[m
+[31m-    .inCol              =   0,   \[m
+[31m-    .curr_char          =   0,   \[m
+[31m-    .word               = { 0 }, \[m
+[31m-    .padding            = { 0 }, \[m
+[31m-    .num                =   0    \[m
+[31m-}[m
+[32m+[m[32m#define TISC_DEFAULT                                                 \[m
+[32m+[m[32m    {                                                                \[m
+[32m+[m[32m        .inst_itr = 0, .data_itr = 0, .instruction_memory = {{0}},   \[m
+[32m+[m[32m        .data_memory = {0}, .reg = {0}, .line_buf = {0}, .inCol = 0, \[m
+[32m+[m[32m        .curr_char = 0, .word = {0}, .padding = {0}, .num =   0      \[m
+[32m+[m[32m    }[m
+ [m
+ // TODO(jason) document[m
+ struct TISC {[m
+[1mdiff --git a/include/TISC_defs.h b/include/TISC_defs.h[m
+[1mindex e4939d4..a95ccd9 100644[m
+[1m--- a/include/TISC_defs.h[m
+[1m+++ b/include/TISC_defs.h[m
+[36m@@ -72,37 +72,24 @@[m [menum op_code {[m
+  * Enum that represents an opcode's given class.[m
+  */[m
+ static const enum op_class {[m
+[31m-    opclRR,     /**< Register-Register operations (r, s, t)     */[m
+[31m-    opclRM,     /**< Register-Memory operations (r) v. (d, s)   */[m
+[31m-    opclRA,     /**< Register-Address operations (r). (d, s)    */[m
+[32m+[m[32m    opclRR, /**< Register-Register operations (r, s, t)     */[m
+[32m+[m[32m    opclRM, /**< Register-Memory operations (r) v. (d, s)   */[m
+[32m+[m[32m    opclRA, /**< Register-Address operations (r). (d, s)    */[m
+ }[m
+ [m
+ /**[m
+  * Lookup table for quick conversion between op_code and op_class[m
+  */[m
+ get_op_class[] = {[m
+[31m-    [opHALT]  = opclRR,[m
+[31m-    [opIN]    = opclRR,[m
+[31m-    [opOUT]   = opclRR,[m
+[31m-    [opADD]   = opclRR,[m
+[31m-    [opSUB]   = opclRR,[m
+[31m-    [opMUL]   = opclRR,[m
+[31m-    [opDIV]   = opclRR,[m
+[31m-    [opRRLim] = opclRR,[m
+[31m-[m
+[31m-    [opLD]    = opclRM,[m
+[31m-    [opST]    = opclRM,[m
+[31m-    [opRMLim] = opclRM,[m
+[31m-[m
+[31m-    [opLDA]   = opclRA,[m
+[31m-    [opLDC]   = opclRA,[m
+[31m-    [opJLT]   = opclRA,[m
+[31m-    [opJLE]   = opclRA,[m
+[31m-    [opJGT]   = opclRA,[m
+[31m-    [opJGE]   = opclRA,[m
+[31m-    [opJEQ]   = opclRA,[m
+[31m-    [opJNE]   = opclRA,[m
+[31m-    [opRALim] = opclRA,[m
+[32m+[m[32m    [opHALT] = opclRR, [opIN] = opclRR,   [opOUT] = opclRR,[m
+[32m+[m[32m    [opADD] = opclRR,  [opSUB] = opclRR,  [opMUL] = opclRR,[m
+[32m+[m[32m    [opDIV] = opclRR,  [opRRLim] = opclRR,[m
+[32m+[m
+[32m+[m[32m    [opLD] = opclRM,   [opST] = opclRM,   [opRMLim] = opclRM,[m
+[32m+[m
+[32m+[m[32m    [opLDA] = opclRA,  [opLDC] = opclRA,  [opJLT] = opclRA,[m
+[32m+[m[32m    [opJLE] = opclRA,  [opJGT] = opclRA,  [opJGE] = opclRA,[m
+[32m+[m[32m    [opJEQ] = opclRA,  [opJNE] = opclRA,  [opRALim] = opclRA,[m
+ };[m
+ [m
+ /**[m
