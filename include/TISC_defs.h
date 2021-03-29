@@ -81,15 +81,15 @@ static const enum op_class {
  * Lookup table for quick conversion between op_code and op_class
  */
 get_op_class[] = {
-    [opHALT] = opclRR, [opIN] = opclRR,   [opOUT] = opclRR,
-    [opADD] = opclRR,  [opSUB] = opclRR,  [opMUL] = opclRR,
+    [opHALT] = opclRR, [opIN] = opclRR,    [opOUT] = opclRR,
+    [opADD] = opclRR,  [opSUB] = opclRR,   [opMUL] = opclRR,
     [opDIV] = opclRR,  [opRRLim] = opclRR,
 
-    [opLD] = opclRM,   [opST] = opclRM,   [opRMLim] = opclRM,
+    [opLD] = opclRM,   [opST] = opclRM,    [opRMLim] = opclRM,
 
-    [opLDA] = opclRA,  [opLDC] = opclRA,  [opJLT] = opclRA,
-    [opJLE] = opclRA,  [opJGT] = opclRA,  [opJGE] = opclRA,
-    [opJEQ] = opclRA,  [opJNE] = opclRA,  [opRALim] = opclRA,
+    [opLDA] = opclRA,  [opLDC] = opclRA,   [opJLT] = opclRA,
+    [opJLE] = opclRA,  [opJGT] = opclRA,   [opJGE] = opclRA,
+    [opJEQ] = opclRA,  [opJNE] = opclRA,   [opRALim] = opclRA,
 };
 
 /**
