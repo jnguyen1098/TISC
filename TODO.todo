@@ -9,3 +9,5 @@ if reengineering: gcov, cunit
 docs/ folder?
 examples/ folder?
 use seethe for logging when reengineering?
+hunt for struct tisc stuff in the doxygen (in the include files)
+put spaces between the doxygen @ annotations
