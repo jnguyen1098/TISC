@@ -388,7 +388,6 @@ static bool doCommand(struct TISC *tisc)
 {
     static bool traceflag  = false;
     static bool icountflag = false;
-    char        cmd        = '\0';
     int         stepcnt    = 0;
     int         i          = 0;
     int         printcnt   = 0;
@@ -412,7 +411,7 @@ static bool doCommand(struct TISC *tisc)
 
     while (get_word(tisc) == 0);
 
-    cmd = tisc->word[0];
+    char cmd = tisc->word[0];
     switch (cmd) {
         case 't':
             traceflag = !traceflag;
