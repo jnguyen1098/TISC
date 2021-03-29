@@ -223,8 +223,11 @@ static bool read_instructions(struct TISC *tisc, FILE *pgm)
 
 static enum step_result step(struct TISC *tisc)
 {
-    int  r = 0, s = 0, t = 0, m = 0;
-    bool ok;
+    bool ok = false;
+    int  r  = 0;
+    int  s  = 0;
+    int  t  = 0;
+    int  m  = 0;
 
     int program_counter = tisc->reg[PC_REG];
 
@@ -383,15 +386,14 @@ static enum step_result step(struct TISC *tisc)
 /********************************************/
 static bool doCommand(struct TISC *tisc)
 {
-    static bool      traceflag  = false;
-    static bool      icountflag = false;
-    char             cmd;
-    int              stepcnt = 0;
-    int              i;
-    int              printcnt;
-    enum step_result stepResult;
-    int              regNo;
-    int              loc;
+    static bool traceflag  = false;
+    static bool icountflag = false;
+    char        cmd        = '\0';
+    int         stepcnt    = 0;
+    int         i          = 0;
+    int         printcnt   = 0;
+    int         regNo      = 0;
+    int         loc        = 0;
 
     do {
         printf("Enter command: ");
@@ -548,7 +550,7 @@ static bool doCommand(struct TISC *tisc)
             fprintf(stderr, "Command %c unknown.\n", cmd);
             break;
     }
-    stepResult = srOKAY;
+    enum step_result stepResult = srOKAY;
     if (stepcnt > 0) {
         if (cmd == 'g') {
             stepcnt = 0;
@@ -588,8 +590,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    struct TISC tisc;
-    memset(&tisc, 0, sizeof(struct TISC));
+    struct TISC tisc = TISC_DEFAULT;
 
     FILE *program_text = fopen(argv[1], "re");
     if (program_text == NULL) {
