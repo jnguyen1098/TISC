@@ -235,12 +235,9 @@ static enum step_result step(struct TISC *tisc)
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
 
-#if 0
-    // Don't think this is needed
     if (program_counter > IADDR_SIZE) {
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
-#endif
 
     tisc->reg[PC_REG]++;
     struct instruction curr_instruction =
