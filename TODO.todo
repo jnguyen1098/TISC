@@ -11,3 +11,4 @@ use seethe for logging when reengineering?
 hunt for struct tisc stuff in the doxygen (in the include files)
 put spaces between the doxygen @ annotations
 push ANSI-style variables down into lower scopes
+when the project is done, should probably create new folders in the graphs folder or smth
