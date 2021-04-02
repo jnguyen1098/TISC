@@ -72,15 +72,6 @@ static char get_next_non_blank_char(struct TISC *tisc);
 static char get_next_char(struct TISC *tisc);
 
 /**
- * Emits an error message and then returns false.
- *
- * @param     msg   error to emit
- * @param line_no   error line number
- * @param inst_no   error instruction number
- */
-static bool error(char *msg, int line_no, int inst_no);
-
-/**
  * Skips input until first char after, setting current char to that
  *
  * @param   c The character to be skipped over in the input buffer
@@ -107,6 +98,15 @@ static int get_word(struct TISC *tisc);
  * @return      whether the parsed object is truly a num
  */
 static bool get_num(struct TISC *tisc);
+
+/**
+ * Emits an error message and then returns false.
+ *
+ * @param     msg   error to emit
+ * @param line_no   error line number
+ * @param inst_no   error instruction number
+ */
+static bool error(char *msg, int line_no, int inst_no);
 
 /**
  * Emits an assembly instruction based on the location in the .text

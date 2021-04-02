@@ -30,37 +30,6 @@
    static bool doCommand(struct TISC *tisc)
 */
 
-void write_instruction(struct TISC *tisc, int loc)
-{
-    printf("%5d: ", loc);
-    if (loc >= 0 && loc < IADDR_SIZE) {
-        printf("%6s%3d,", opCodeTab[tisc->instruction_memory[loc].iop],
-               tisc->instruction_memory[loc].iarg1);
-        switch (get_op_class[tisc->instruction_memory[loc].iop]) {
-            case opclRR:
-                printf("%1d,%1d", tisc->instruction_memory[loc].iarg2,
-                       tisc->instruction_memory[loc].iarg3);
-                break;
-            case opclRM:
-            case opclRA:
-                printf("%3d(%1d)", tisc->instruction_memory[loc].iarg2,
-                       tisc->instruction_memory[loc].iarg3);
-                break;
-        }
-        printf("\n");
-    } else {
-        // TODO(Jason): test this branch
-        fprintf(
-            stderr, "Called write_instruction(..., %d) with %d limit\n",
-            loc,
-            IADDR_SIZE
-        );
-        fprintf(stderr, "TODO(jason) should this just kill the program?\n");
-    }
-}
-
-char get_next_char(struct TISC *tisc) { return tisc->line_buf[++tisc->inCol]; }
-
 char get_next_non_blank_char(struct TISC *tisc)
 {
     // TODO(jason): this function has to die in the global exodus
@@ -68,6 +37,33 @@ char get_next_non_blank_char(struct TISC *tisc)
         tisc->inCol++;
     }
     return tisc->line_buf[tisc->inCol];
+}
+
+char get_next_char(struct TISC *tisc) { return tisc->line_buf[++tisc->inCol]; }
+
+bool get_next_char_after(struct TISC *tisc, char c)
+{
+    if ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' &&
+        (tisc->curr_char == c)) {
+        tisc->curr_char = get_next_char(tisc);
+        return true;
+    }
+    return false;
+}
+
+int get_word(struct TISC *tisc)
+{
+    int length = 0;
+    if ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0') {
+        while (isalnum(tisc->curr_char)) {
+            if (length < WORD_SIZE - 1) {
+                tisc->word[length++] = tisc->curr_char;
+            }
+            tisc->curr_char = get_next_char(tisc);
+        }
+        tisc->word[length] = '\0';
+    }
+    return length;
 }
 
 bool get_num(struct TISC *tisc)
@@ -99,31 +95,6 @@ bool get_num(struct TISC *tisc)
     return is_num;
 }
 
-int get_word(struct TISC *tisc)
-{
-    int length = 0;
-    if ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0') {
-        while (isalnum(tisc->curr_char)) {
-            if (length < WORD_SIZE - 1) {
-                tisc->word[length++] = tisc->curr_char;
-            }
-            tisc->curr_char = get_next_char(tisc);
-        }
-        tisc->word[length] = '\0';
-    }
-    return length;
-}
-
-bool get_next_char_after(struct TISC *tisc, char c)
-{
-    if ((tisc->curr_char = get_next_non_blank_char(tisc)) != '\0' &&
-        (tisc->curr_char == c)) {
-        tisc->curr_char = get_next_char(tisc);
-        return true;
-    }
-    return false;
-}
-
 bool error(char *msg, int line_no, int inst_no)
 {
     fprintf(stderr, "Line %d", line_no);
@@ -132,6 +103,35 @@ bool error(char *msg, int line_no, int inst_no)
     }
     fprintf(stderr, "   %s\n", msg);
     return false;
+}
+
+void write_instruction(struct TISC *tisc, int loc)
+{
+    printf("%5d: ", loc);
+    if (loc >= 0 && loc < IADDR_SIZE) {
+        printf("%6s%3d,", opCodeTab[tisc->instruction_memory[loc].iop],
+               tisc->instruction_memory[loc].iarg1);
+        switch (get_op_class[tisc->instruction_memory[loc].iop]) {
+            case opclRR:
+                printf("%1d,%1d", tisc->instruction_memory[loc].iarg2,
+                       tisc->instruction_memory[loc].iarg3);
+                break;
+            case opclRM:
+            case opclRA:
+                printf("%3d(%1d)", tisc->instruction_memory[loc].iarg2,
+                       tisc->instruction_memory[loc].iarg3);
+                break;
+        }
+        printf("\n");
+    } else {
+        // TODO(Jason): test this branch
+        fprintf(
+            stderr, "Called write_instruction(..., %d) with %d limit\n",
+            loc,
+            IADDR_SIZE
+        );
+        fprintf(stderr, "TODO(jason) should this just kill the program?\n");
+    }
 }
 
 static bool read_instructions(struct TISC *tisc, FILE *pgm)
