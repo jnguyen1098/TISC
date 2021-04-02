@@ -40,6 +40,7 @@ void write_instruction(struct TISC *tisc, int loc)
             loc,
             IADDR_SIZE
         );
+        fprintf(stderr, "TODO(jason) should this just kill the program?\n");
     }
 }
 
