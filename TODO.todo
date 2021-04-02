@@ -13,3 +13,4 @@ put spaces between the doxygen @ annotations
 push ANSI-style variables down into lower scopes
 when the project is done, should probably create new folders in the graphs folder or smth
 create tests with bad files when i know how they work
+look at doxygen stuff
