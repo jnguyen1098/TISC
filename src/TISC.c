@@ -15,6 +15,21 @@
 #include <stdio.h>
 #include <string.h>
 
+/*
+   get_next_non_blank_char(struct TISC *tisc)
+   get_next_char(struct TISC *tisc)
+   get_next_char_after(struct TISC *tisc, char c)
+   static int get_word(struct TISC *tisc)
+   static bool get_num(struct TISC *tisc)
+
+   error(char *msg, int line_no, int inst_no)
+
+   static void write_instruction(struct TISC *tisc, int loc)
+   static bool read_instructions(struct TISC *tisc, FILE *pgm)
+   static enum step_result step(struct TISC *tisc)
+   static bool doCommand(struct TISC *tisc)
+*/
+
 void write_instruction(struct TISC *tisc, int loc)
 {
     printf("%5d: ", loc);
