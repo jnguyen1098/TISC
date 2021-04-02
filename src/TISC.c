@@ -47,7 +47,6 @@ char get_next_non_blank_char(struct TISC *tisc)
     return tisc->line_buf[tisc->inCol];
 }
 
-/********************************************/
 bool get_num(struct TISC *tisc)
 {
     // TODO(jason) solve this int vs bool confusion
@@ -380,7 +379,6 @@ static enum step_result step(struct TISC *tisc)
     return srOKAY;
 }
 
-/********************************************/
 static bool doCommand(struct TISC *tisc)
 {
     static bool traceflag  = false;
@@ -577,7 +575,7 @@ static bool doCommand(struct TISC *tisc)
         }
     }
     return true;
-} /* doCommand */
+}
 
 int main(int argc, char *argv[])
 {
