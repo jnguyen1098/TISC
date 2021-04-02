@@ -58,6 +58,10 @@ int get_word(struct TISC *tisc)
         while (isalnum(tisc->curr_char)) {
             if (length < WORD_SIZE - 1) {
                 tisc->word[length++] = tisc->curr_char;
+            } else {
+                fprintf(stderr, "Word is too big (%d, limit %d)\n",
+                    length, WORD_SIZE);
+                fprintf(stderr, "TODO: should this be a fatal error?\n");
             }
             tisc->curr_char = get_next_char(tisc);
         }
