@@ -129,4 +129,14 @@ static void write_instruction(struct TISC *tisc, int loc);
  */
 static bool read_instructions(struct TISC *tisc, FILE *pgm);
 
+/**
+ * Step through a single instruction of a given program
+ *
+ * @pre         program is loaded successfully in tisc
+ * @param tisc  TISC computer to step through
+ * @return      an enum step_result signifying status
+ * @post        tisc's instruction buffer will be advanced
+ */
+static enum step_result step(struct TISC *tisc);
+
 #endif
