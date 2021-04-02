@@ -118,4 +118,15 @@ static bool get_num(struct TISC *tisc);
  */
 static void write_instruction(struct TISC *tisc, int loc);
 
+/**
+ * Attempts to read the instructions out of a file
+ *
+ * @pre         tisc is a valid TISC computer
+ * @param tisc  TISC computer to read the data from
+ * @param pgm   FILE pointer to the program
+ * @return      whether reading the file was successful
+ * @post        pgm will be exhausted and tisc will have lines
+ */
+static bool read_instructions(struct TISC *tisc, FILE *pgm);
+
 #endif
