@@ -139,4 +139,14 @@ static bool read_instructions(struct TISC *tisc, FILE *pgm);
  */
 static enum step_result step(struct TISC *tisc);
 
+/**
+ * Execute a TISC interactive CLI command from the user
+ *
+ * @pre         user enters a command interactive
+ * @param tisc  TISC computer to run command with
+ * @return      whether to continue asking for input
+ * @post        action is taken or program main loops ends
+ */
+static bool doCommand(struct TISC *tisc);
+
 #endif
