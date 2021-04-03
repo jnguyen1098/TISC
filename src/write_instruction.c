@@ -25,11 +25,8 @@ void write_instruction(struct TISC *tisc, int loc)
         printf("\n");
     } else {
         // TODO(Jason): test this branch
-        fprintf(
-            stderr, "Called write_instruction(..., %d) with %d limit\n",
-            loc,
-            IADDR_SIZE
-        );
+        fprintf(stderr, "Called write_instruction(..., %d) with %d limit\n",
+                loc, IADDR_SIZE);
         fprintf(stderr, "TODO(jason) should this just kill the program?\n");
     }
 }

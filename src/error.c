@@ -5,8 +5,8 @@
 
 #include "TISC.h"
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool error(char *msg, int line_no, int inst_no)
 {
