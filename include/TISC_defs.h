@@ -14,6 +14,7 @@
 #ifndef TISC_DEFS_H
 #define TISC_DEFS_H
 
+#include <stdio.h>
 #include <stdlib.h>
 
 /** Instruction address array size */
@@ -112,6 +113,25 @@ struct instruction {
     int          iarg2; /**< TODO: input argument 2? */
     int          iarg3; /**< TODO: input argument 3? */
 };
+
+// TODO(jason) document
+struct TISC {
+    int inst_itr;
+    int data_itr;
+
+    struct instruction instruction_memory[IADDR_SIZE];
+    int                data_memory[DADDR_SIZE];
+    int                reg[NO_REGS];
+
+    char line_buf[BUFSIZ];
+    int  inCol;
+    char curr_char;
+
+    char word[WORD_SIZE];
+    char padding[3];
+    int  num;
+};
+
 
 static const char *opCodeTab[] = {
     /* RR opcodes */

@@ -16,8 +16,6 @@
 #include "TISC_defs.h"
 
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #define TISC_INIT                                                    \
     {                                                                \
@@ -25,26 +23,6 @@
         .data_memory = {0}, .reg = {0}, .line_buf = {0}, .inCol = 0, \
         .curr_char = 0, .word = {0}, .padding = {0}, .num = 0        \
     }
-
-// TODO(jason) document
-struct TISC {
-    int inst_itr;
-    int data_itr;
-
-    struct instruction instruction_memory[IADDR_SIZE];
-    int                data_memory[DADDR_SIZE];
-    int                reg[NO_REGS];
-
-    char line_buf[BUFSIZ];
-    int  inCol;
-    char curr_char;
-
-    char word[WORD_SIZE];
-    char padding[3];
-    int  num;
-};
-
-// pre post param return see TODO(Jason) remove this comment
 
 /**
  * Consumes line input until current character is non-blank,
