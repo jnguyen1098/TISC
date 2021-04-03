@@ -38,7 +38,7 @@ lint: all
 
 cppcheck:
 	@echo "Running cppcheck"
-	cppcheck --enable=all -I$(INC) --inconclusive -v $(SRC)
+	cppcheck --enable=all -I$(INC) --inconclusive -v $(SRC)/*.c
 
 splint:
 	@echo "Running splint"

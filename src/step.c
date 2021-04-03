@@ -19,7 +19,7 @@ enum step_result step(struct TISC *tisc)
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
 
-    if (program_counter > IADDR_SIZE) {
+    if (program_counter >= IADDR_SIZE) {
         return STEP_ILLEGAL_PROGRAM_COUNTER_INDEX;
     }
 
