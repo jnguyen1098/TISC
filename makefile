@@ -42,7 +42,7 @@ cppcheck:
 
 splint:
 	@echo "Running splint"
-	splint -I$(INC) $(SRC)/*.c +charint +matchanyintegral
+	splint -I$(INC) $(SRC)/*.c +charint +matchanyintegral -varuse
 
 clang-analyze:
 	@echo "Running clang's static analyzer"
