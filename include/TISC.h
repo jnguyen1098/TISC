@@ -57,7 +57,7 @@ struct TISC {
  * @return  the next non-blank charcter if it exists;
  *          '\0' otherwise.
  */
-static char get_next_non_blank_char(struct TISC *tisc);
+char get_next_non_blank_char(struct TISC *tisc);
 
 /**
  * Consumes the next character in the line buffer and returns
@@ -69,7 +69,7 @@ static char get_next_non_blank_char(struct TISC *tisc);
  *
  * @return   The next character, or the ' ' space character.
  */
-static char get_next_char(struct TISC *tisc);
+char get_next_char(struct TISC *tisc);
 
 /**
  * Skips input until first char after, setting current char to that
@@ -80,7 +80,7 @@ static char get_next_char(struct TISC *tisc);
  *          input buffer, it returns false instead.
  * @post    input stream may be advanced forward
  */
-static bool get_next_char_after(struct TISC *tisc, char c);
+bool get_next_char_after(struct TISC *tisc, char c);
 
 /**
  * Gets the next word from input buffer, which is defined as a
@@ -89,7 +89,7 @@ static bool get_next_char_after(struct TISC *tisc, char c);
  * @post    input buffer will likely be consumed normally
  * @return  length of the consumed word. 0 if nonexistence
  */
-static int get_word(struct TISC *tisc);
+int get_word(struct TISC *tisc);
 
 /**
  * Consumes a number from the input and returns it as an int
@@ -97,7 +97,7 @@ static int get_word(struct TISC *tisc);
  * @param tisc  the machine to get the number from
  * @return      whether the parsed object is truly a num
  */
-static bool get_num(struct TISC *tisc);
+bool get_num(struct TISC *tisc);
 
 /**
  * Emits an error message and then returns false.
@@ -106,7 +106,7 @@ static bool get_num(struct TISC *tisc);
  * @param line_no   error line number
  * @param inst_no   error instruction number
  */
-static bool error(char *msg, int line_no, int inst_no);
+bool error(char *msg, int line_no, int inst_no);
 
 /**
  * Emits an assembly instruction based on the location in the .text
@@ -116,7 +116,7 @@ static bool error(char *msg, int line_no, int inst_no);
  * @param loc   location in the inst array of the opcode to write
  * @post        stdout has output emitted from TISC
  */
-static void write_instruction(struct TISC *tisc, int loc);
+void write_instruction(struct TISC *tisc, int loc);
 
 /**
  * Attempts to read the instructions out of a file
@@ -127,7 +127,7 @@ static void write_instruction(struct TISC *tisc, int loc);
  * @return      whether reading the file was successful
  * @post        pgm will be exhausted and tisc will have lines
  */
-static bool read_instructions(struct TISC *tisc, FILE *pgm);
+bool read_instructions(struct TISC *tisc, FILE *pgm);
 
 /**
  * Step through a single instruction of a given program
@@ -137,7 +137,7 @@ static bool read_instructions(struct TISC *tisc, FILE *pgm);
  * @return      an enum step_result signifying status
  * @post        tisc's instruction buffer will be advanced
  */
-static enum step_result step(struct TISC *tisc);
+enum step_result step(struct TISC *tisc);
 
 /**
  * Execute a TISC interactive CLI command from the user
@@ -147,6 +147,6 @@ static enum step_result step(struct TISC *tisc);
  * @return      whether to continue asking for input
  * @post        action is taken or program main loops ends
  */
-static bool doCommand(struct TISC *tisc);
+bool doCommand(struct TISC *tisc);
 
 #endif
