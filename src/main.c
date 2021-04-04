@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     /* read-eval-print */
     printf("TM  simulation (enter h for help)...\n");
 
-    while (doCommand(&tisc)) {
+    while (do_command(&tisc)) {
     }
 
     printf("Simulation done.\n");

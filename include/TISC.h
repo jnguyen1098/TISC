@@ -125,6 +125,6 @@ enum step_result step(struct TISC *tisc);
  * @return      whether to continue asking for input
  * @post        action is taken or program main loops ends
  */
-bool doCommand(struct TISC *tisc);
+bool do_command(struct TISC *tisc);
 
 #endif

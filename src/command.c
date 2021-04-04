@@ -5,7 +5,7 @@
 
 #include "TISC.h"
 
-bool doCommand(struct TISC *tisc)
+bool do_command(struct TISC *tisc)
 {
     static bool traceflag  = false;
     static bool icountflag = false;
