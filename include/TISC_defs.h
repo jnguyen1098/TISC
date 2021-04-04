@@ -32,6 +32,14 @@
 /** Size of an instruction word */
 #define WORD_SIZE 20
 
+/** TISC initialization struct */
+#define TISC_INIT                                                    \
+    {                                                                \
+        .inst_itr = 0, .data_itr = 0, .instruction_memory = {{0}},   \
+        .data_memory = {0}, .reg = {0}, .line_buf = {0}, .inCol = 0, \
+        .curr_char = 0, .word = {0}, .padding = {0}, .num = 0        \
+    }
+
 enum op_code {
 
     // REGISTER-TO-REGISTER (RR) INSTRUCTIONS
