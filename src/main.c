@@ -3,12 +3,21 @@
  * @brief   Mainline driver program.
  */
 #include "TISC.h"
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s filename\n", argv[0]);
         exit(EXIT_FAILURE);
+    }
+
+    // TODO(jason) create better way to test program LMAOOO
+    // TODO(jason) fix makefile so that it compiles tests/unit...
+    // TODO(jason) perhaps maybe a separate driver. or run tests every startup
+    if (!strcmp(argv[1], "test")) {
+        run_all_tests(0);
+        return 0;
     }
 
     struct TISC tisc = TISC_INIT;

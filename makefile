@@ -12,7 +12,7 @@ INC = include
 SRC = src
 TESTS = tests
 
-_OBJS = command file parse_instruction write_instruction error main step
+_OBJS = command file parse_instruction write_instruction error main step unit_tests
 
 EXE = $(BIN)/$(PROJ)
 DEPS = $(INC)/$(PROJ).h $(INC)/$(PROJ)_defs.h
@@ -27,7 +27,11 @@ $(BIN)/%.o: $(SRC)/%.c $(DEPS)
 	$(CC) $(CFLAGS) $< -c -o $@
 
 test: all
-	cd $(TESTS) && ./run_tests.sh $$TESTARG
+	@echo -e "\nRunning unit tests"
+	@./$(EXE) test && \
+        echo -e "\e[32mUnit tests succeeded\n\e[0m" || \
+        echo -e "\e[31mUnit tests failed\n\e[0m"
+	@cd $(TESTS) && ./run_tests.sh $$TESTARG
 
 lint: all
 	make cppcheck

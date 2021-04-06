@@ -40,9 +40,8 @@ for fname in "$ASMS"/*; do
         "$BOOTSTRAP_BIN" "$ASMS"/"$testcase".tm < "$INPUTS"/"$testcase".in > "$OUTPUTS"/"$testcase".out
     fi
 done
-echo ""
 
-echo "Running tests"
+echo "Running E2E tests"
 for fname in "$ASMS"/*
 do
     # Generate test case ID
@@ -73,7 +72,7 @@ do
 done
 
 if [ "$DIFF_FAILED" = true ]; then
-    echo -e "\n\e[31mTests failed!\e[0m"
+    echo -e "\e[31mE2e tests failed!\n\e[0m"
     exit 1
 fi
 
@@ -82,4 +81,4 @@ if [ "$VALGRIND_FAILED" = true ]; then
     exit 1
 fi
 
-echo -e "\n\e[32mTests succeeded!\e[0m"
+echo -e "\e[32mE2E tests succeeded!\n\e[0m"
