@@ -389,7 +389,7 @@ STEPRESULT stepTM (void)
     case opJGT :    if ( reg[r] >  0 ) reg[PC_REG] = m ; break;
     case opJGE :    if ( reg[r] >=  0 ) reg[PC_REG] = m ; break;
     case opJEQ :    if ( reg[r] == 0 ) reg[PC_REG] = m ; break;
-    case opJNE :    if ( reg[r] == 0 ) reg[PC_REG] = m ; break;
+    case opJNE :    if ( reg[r] != 0 ) reg[PC_REG] = m ; break;
 
     /* end of legal instructions */
   } /* case */
