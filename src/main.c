@@ -2,8 +2,8 @@
  * @file    main.c
  * @brief   Mainline driver program.
  */
-#include "TISC.h"
 #include <string.h>
+#include "TISC.h"
 
 int main(int argc, char *argv[])
 {

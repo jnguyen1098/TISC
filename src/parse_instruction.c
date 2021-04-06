@@ -7,18 +7,20 @@
 
 #include <string.h>
 
-bool init_TISC(struct TISC *tisc); // TODO(jason) should this be in a header?
-// TODO(jason) should this be in its own file? 
+// TODO(jason) should this be in a header?
+// TODO(jason) should this be in its own file?
+static bool init_TISC(struct TISC *tisc);
 
-bool init_TISC(struct TISC *tisc)
+static bool init_TISC(struct TISC *tisc)
 {
+    int i;
     // TODO(jason) should these be commented? or functionized?
     if (tisc == NULL) {
         return error("NULL TISC passed to init_tisc()", 0, 0);
     }
 
     // initialize registers
-    for (int i = 0; i < NO_REGS; i++) {
+    for (i = 0; i < NO_REGS; i++) {
         tisc->reg[i] = 0;
     }
 
@@ -26,12 +28,12 @@ bool init_TISC(struct TISC *tisc)
     tisc->data_memory[0] = DADDR_SIZE - 1;
 
     // initialize rest of data address
-    for (int i = 1; i < DADDR_SIZE; i++) {
+    for (i = 1; i < DADDR_SIZE; i++) {
         tisc->data_memory[i] = 0;
     }
 
     // initialize all instructions to nul
-    for (int i = 0; i < IADDR_SIZE; i++) {
+    for (i = 0; i < IADDR_SIZE; i++) {
         tisc->instruction_memory[i].iop   = opHALT;
         tisc->instruction_memory[i].iarg1 = 0;
         tisc->instruction_memory[i].iarg2 = 0;
