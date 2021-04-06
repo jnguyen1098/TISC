@@ -28,8 +28,11 @@ echo "Building project"
 cd .. && make all && cd -
 echo ""
 
+echo -e "Compiling unit tests\n"
+gcc "$UNIT_TEST_SRC" -D"main(...)"="_mn_(__VA_ARGS__)" \
+    -std=c99 -I../include -Iseethe ../src/*.c
+
 echo "Running unit tests"
-gcc "$UNIT_TEST_SRC" -D"main(...)"="_mn_(__VA_ARGS__)" -I../include ../src/*.c
 if ! ./a.out; then
     echo -e "\e[31mUnit tests failed!\n\e[0m"
     exit 1

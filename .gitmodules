@@ -1,0 +1,3 @@
+[submodule "tests/seethe"]
+	path = tests/seethe
+	url = git@github.com:jnguyen1098/seethe.git
