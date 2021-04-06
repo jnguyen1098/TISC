@@ -12,6 +12,7 @@ INPUTS="$TEST_DIR/in"
 OUTPUTS="$TEST_DIR/out"
 
 BOOTSTRAP_SRC="$TEST_DIR/tm.c"
+UNIT_TEST_SRC="$TEST_DIR/unit_tests.c"
 
 TISC_BIN=../bin/TISC
 BOOTSTRAP_BIN="$TEST_DIR/tm"
@@ -21,11 +22,19 @@ TMP_OUT="_tisc_test_result_output.tmp"
 DIFF_FAILED=false
 VALGRIND_FAILED=false
 
-trap 'rm -f $TMP_OUT; rm -f exit' 0 2 3 15
+trap 'rm -f $TMP_OUT a.out; exit' 0 2 3 15
 
 echo "Building project"
 cd .. && make all && cd -
 echo ""
+
+echo "Running unit tests"
+gcc "$UNIT_TEST_SRC" -D"main(...)"="_mn_(__VA_ARGS__)" -I../include ../src/*.c
+if ! ./a.out; then
+    echo -e "\e[31mUnit tests failed!\n\e[0m"
+    exit 1
+fi
+echo -e "\e[32mUnit tests succeeded!\n\e[0m"
 
 if [ ! -f "$BOOTSTRAP_BIN" ]; then
     echo "Compiling TM test bootstrapper just in case..."
@@ -72,7 +81,7 @@ do
 done
 
 if [ "$DIFF_FAILED" = true ]; then
-    echo -e "\e[31mE2e tests failed!\n\e[0m"
+    echo -e "\e[31mE2E tests failed!\n\e[0m"
     exit 1
 fi
 
