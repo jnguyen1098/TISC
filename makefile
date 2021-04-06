@@ -31,7 +31,6 @@ test: all
 
 lint: all
 	make cppcheck
-	make splint
 	make clang-analyze
 	make clang-tidy
 	make clang-format
@@ -39,10 +38,6 @@ lint: all
 cppcheck:
 	@echo "Running cppcheck"
 	cppcheck --enable=all -I$(INC) --inconclusive -v $(SRC)/*.c
-
-splint:
-	@echo "Running splint"
-	splint -I$(INC) $(SRC)/*.c +charint +matchanyintegral -varuse
 
 clang-analyze:
 	@echo "Running clang's static analyzer"
