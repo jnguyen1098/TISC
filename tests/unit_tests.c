@@ -30,7 +30,6 @@ void run_init_tests(int level)
 
     info(level + 1, "Init test 1\n");
     assert(init_TISC(NULL) == false);
-    assert(init_TISC(NULL));
 
     info(level, "Done running init tests\n");
 }
