@@ -41,5 +41,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
+    malloc(1);
     return 0;
 }
