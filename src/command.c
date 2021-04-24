@@ -28,9 +28,7 @@ bool do_command(struct TISC *tisc)
         }
 
         tisc->inCol = 0;
-    }
-
-    while (get_word(tisc) == 0);
+    } while (get_word(tisc) == 0);
 
     char cmd = tisc->word[0];
     switch (cmd) {
@@ -57,7 +55,7 @@ bool do_command(struct TISC *tisc)
                 "Print the contents of the registers\n");
             printf(
                 "   i(Mem <b <n>>  "
-                "Print n iMem locations starting at b\n");  // TODO(jason)
+                "Print n iMem locations starting at b\n");  // TODO(jason) iMem rename
             printf(
                 "   d(Mem <b <n>>  "
                 "Print n data memory locations starting at b\n");
