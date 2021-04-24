@@ -7,42 +7,6 @@
 
 #include <string.h>
 
-// TODO(jason) should this be in a header?
-// TODO(jason) should this be in its own file?
-bool init_TISC(struct TISC *tisc);
-
-bool init_TISC(struct TISC *tisc)
-{
-    // TODO(jason) should these be commented? or functionized?
-    if (tisc == NULL) {
-        return error("NULL TISC passed to init_tisc()", 0, 0);
-    }
-
-    // initialize registers
-    for (int i = 0; i < NO_REGS; i++) {
-        tisc->reg[i] = 0;
-    }
-
-    // first data address is written
-    tisc->data_memory[0] = DADDR_SIZE - 1;
-
-    // initialize rest of data address
-    for (int i = 1; i < DADDR_SIZE; i++) {
-        tisc->data_memory[i] = 0;
-    }
-
-    // initialize all instructions to nul
-    for (int i = 0; i < IADDR_SIZE; i++) {
-        tisc->instruction_memory[i].iop   = opHALT;
-        tisc->instruction_memory[i].iarg1 = 0;
-        tisc->instruction_memory[i].iarg2 = 0;
-        tisc->instruction_memory[i].iarg3 = 0;
-    }
-
-    // lmao
-    return true;
-}
-
 bool read_instructions(struct TISC *tisc, FILE *pgm)
 {
     int arg1   = 0;
@@ -50,10 +14,6 @@ bool read_instructions(struct TISC *tisc, FILE *pgm)
     int arg3   = 0;
     int loc    = 0;
     int lineNo = 0;
-
-    if (!init_TISC(tisc)) {
-        return error("Could not initialize TISC in read_instructions()", 0, 0);
-    }
 
     while (fgets(tisc->line_buf, (size_t)BUFSIZ, pgm)) {
         tisc->inCol = 0;

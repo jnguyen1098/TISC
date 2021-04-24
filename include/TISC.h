@@ -18,6 +18,17 @@
 #include <stdbool.h>
 
 /**
+ * Initializes a TISC machine's data to default values
+ *
+ * @pre         tisc is not NULL and is a valid pointer
+ * @param tisc  the TISC machine to initialize
+ * @post        TISC machine values are initialized
+ * @return      true if success, false otherwose
+ *
+ */
+bool init_TISC(struct TISC *tisc);
+
+/**
  * Consumes line input until current character is non-blank,
  * then returns the character to the user (or '\0' if EOF)
  *
@@ -45,11 +56,13 @@ char get_next_char(struct TISC *tisc);
 /**
  * Skips input until first char after, setting current char to that
  *
- * @param   c The character to be skipped over in the input buffer
- * @return  whether the skip was successful. If the input buffer
- *          reaches EOF or there is no occurrence of char c in the
- *          input buffer, it returns false instead.
- * @post    input stream may be advanced forward
+ * @param   c   The character to be skipped over in the input buffer
+ *
+ * @return      whether the skip was successful. If the input buffer
+ *              reaches EOF or there is no occurrence of char c in the
+ *              input buffer, it returns false instead.
+ *
+ * @post        input stream may be advanced forward
  */
 bool get_next_char_after(struct TISC *tisc, char c);
 

@@ -7,6 +7,36 @@
 
 #include <ctype.h>
 
+bool init_TISC(struct TISC *tisc)
+{
+    if (tisc == NULL) {
+        return error("NULL TISC passed to init_tisc()", 0, 0);
+    }
+
+    // initialize registers
+    for (int i = 0; i < NO_REGS; i++) {
+        tisc->reg[i] = 0;
+    }
+
+    // first data address is written
+    tisc->data_memory[0] = DADDR_SIZE - 1;
+
+    // initialize rest of data address
+    for (int i = 1; i < DADDR_SIZE; i++) {
+        tisc->data_memory[i] = 0;
+    }
+
+    // initialize all instructions to nul
+    for (int i = 0; i < IADDR_SIZE; i++) {
+        tisc->instruction_memory[i].iop   = opHALT;
+        tisc->instruction_memory[i].iarg1 = 0;
+        tisc->instruction_memory[i].iarg2 = 0;
+        tisc->instruction_memory[i].iarg3 = 0;
+    }
+
+    return true;
+}
+
 char get_next_non_blank_char(struct TISC *tisc)
 {
     // TODO(jason): this function has to die in the global exodus

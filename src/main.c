@@ -12,7 +12,11 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    struct TISC tisc = TISC_INIT;
+    struct TISC tisc;
+    if (!init_TISC(&tisc)) {
+        fprintf(stderr, "Could not initialize TISC. Existing\n");
+        exit(EXIT_FAILURE);
+    }
 
     FILE *program_text = fopen(argv[1], "re");
     if (program_text == NULL) {
