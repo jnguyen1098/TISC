@@ -12,7 +12,7 @@ INC = include
 SRC = src
 TESTS = tests
 
-_OBJS = command file parse_instruction write_instruction error main step
+_OBJS = TISC command parse_instruction write_instruction error main step
 
 EXE = $(BIN)/$(PROJ)
 DEPS = $(INC)/$(PROJ).h $(INC)/$(PROJ)_defs.h
