@@ -111,7 +111,7 @@ void write_instruction(struct TISC *tisc, int loc);
  * @return      whether reading the file was successful
  * @post        pgm will be exhausted and tisc will have lines
  */
-bool read_instructions(struct TISC *tisc, FILE *pgm);
+bool read_program(struct TISC *tisc, FILE *pgm);
 
 /**
  * Step through a single instruction of a given program

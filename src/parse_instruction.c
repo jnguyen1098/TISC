@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-bool read_instructions(struct TISC *tisc, FILE *pgm)
+bool read_program(struct TISC *tisc, FILE *pgm)
 {
     int arg1   = 0;
     int arg2   = 0;

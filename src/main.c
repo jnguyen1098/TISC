@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     }
 
     /* read the program */
-    if (!read_instructions(&tisc, program_text)) {
+    if (!read_program(&tisc, program_text)) {
         fprintf(stderr, "Could not read read %s. Exiting\n", argv[1]);
         exit(EXIT_FAILURE);
     }
