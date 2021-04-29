@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "TISC.h"
 #include "TISC_defs.h"
@@ -20,6 +21,22 @@
 void run_all_tests(int level);
 void run_init_tests(int level);
 
+int assert_TISC_equal(struct TISC *a, struct TISC *b);
+
+int assert_TISC_equal(struct TISC *a, struct TISC *b)
+{
+    if (a->inst_itr != b->inst_tr) return 0;
+    if (a->data_itr != b->data_itr) return 0;
+    // compare equality in instruction_memory
+    // compare equality in data_memory
+    // compare equality in registers
+    // compare line_buf
+    // compare inCol
+    // compare curr_char
+    // compare curr word
+    // compare num
+}
+
 void run_init_tests(int level)
 {
     info(level, "\n");
@@ -27,6 +44,10 @@ void run_init_tests(int level)
 
     info(level + 1, "Init test 1\n");
     assert(init_TISC(NULL) == false);
+
+    info(level + 1, "Initialized values testing\n");
+    struct TISC tmp;
+    memset(&tmp, 0xFF, sizeof(struct TISC));
 
     info(level, "Done running init tests\n");
 }
