@@ -20,9 +20,6 @@
 void run_all_tests(int level);
 void run_init_tests(int level);
 
-// TODO(jason) SO BAD
-extern bool init_TISC(struct TISC *tisc);
-
 void run_init_tests(int level)
 {
     info(level, "\n");
